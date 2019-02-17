@@ -101,7 +101,9 @@
     <label for="inputState">Departamento</label>
     <select id="inputState" class="form-control">
       <option selected>Seleccione...</option>
-      <option>...</option>
+      @foreach ($departamentos as $departamento)
+      <option value="{{$departamento->coddepartamentos}}">{{$departamento->departamento}}</option>
+        @endforeach
     </select>
   </div>
   <div class="form-group col-md-4">
