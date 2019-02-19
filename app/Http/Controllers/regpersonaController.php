@@ -14,7 +14,7 @@ class regpersonaController extends Controller
      */
     public function index()
     {
-        $regiones = DB::table('regiones')->get();
+        $regiones = DB::table('regiones')->where('estado',true)->get();
         $departamentos = DB::table('departamentos')->get();
         $municipios = DB::table('municipio')->get();  
 
@@ -39,7 +39,10 @@ class regpersonaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request->input('municipio');
+        $name2 = $request->input('mesa');
+        //$name=$request->all();
+        return $name;
     }
 
     /**
@@ -50,9 +53,15 @@ class regpersonaController extends Controller
      */
     public function show($id)
     {
-        //
+        $datosmunicipio = DB::table('municipio')->leftJoin('departamentos', 
+        'municipio.departamentos_coddepartamentos', '=', 'departamentos.coddepartamentos')
+        ->where('municipio.departamentos_coddepartamentos',"=",$id)
+        ->select('codmunicipio', 'municipio')
+        ->get();
+       return $datosmunicipio;
     }
 
+    
     /**
      * Show the form for editing the specified resource.
      *

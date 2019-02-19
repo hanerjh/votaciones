@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 
 Route::resource('/ingresar','regpersonaController');
+Route::get('/locationm/{id}','locationController@municipios');
+Route::get('/locationd/{id}','locationController@departamentos');
+Route::get('/locationpv/{id}','locationController@puestovotaciones');

@@ -3,7 +3,8 @@
 @section('content')
 
 
-<form>
+<form action="ingresar/" method="POST" >
+    @csrf
   <div class="form-row">
       <div class="col-12 ">
           <legend class="text-light bg-dark px-2">Informacion personal</legend>
@@ -89,7 +90,7 @@
     
     <div class="form-group col-md-4">
         <label for="inputState">Region</label>
-        <select id="inputState" class="form-control">          
+        <select id="inputState" class="form-control" v-on:Change="onChangeregion($event)"  v-model="selectedregion">          
           <option selected>Seleccione...</option>
           @foreach ($regiones as $region)
         <option value="{{$region->idregiones}}">{{$region->region}}</option>
@@ -99,18 +100,20 @@
       </div>
   <div class="form-group col-md-4">
     <label for="inputState">Departamento</label>
-    <select id="inputState" class="form-control">
+    <select id="inputState" class="form-control" v-on:Change="onChange($event)" v-model="itemlist" >
       <option selected>Seleccione...</option>
-      @foreach ($departamentos as $departamento)
-      <option value="{{$departamento->coddepartamentos}}">{{$departamento->departamento}}</option>
-        @endforeach
+     
+    <option v-for="departamento in departamentos" :value="departamento.coddepartamentos">@{{departamento.departamento}}</option>
+       
     </select>
   </div>
+
   <div class="form-group col-md-4">
       <label for="inputState">Municipio</label>
-      <select id="inputState" class="form-control">
+      <select id="inputState" name="municipio" class="form-control" v-on:Change="cargarPuestosVotacion($event)" v-model="selectedmunicipio">
         <option selected>Seleccione...</option>
-        <option>...</option>
+      <option v-for="muni in municipios" :value="muni.codmunicipio">@{{muni.municipio}}</option>         
+     
       </select>
     </div>
 
@@ -119,13 +122,13 @@
         <label for="inputState">Puesto de Votación</label>
         <select id="inputState" class="form-control">
           <option selected>Seleccione...</option>
-          <option>...</option>
+          <option v-for="puesto in puestovotaciones" v-bind:value="puesto.idpuesto_votacion">@{{puesto.nombre}}</option>
         </select>
       </div>
 
       <div class="form-group col-md-2">
-          <label for="inputAddress2">Mesa de votacion</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Mesa">
+          <label for="inputAddress2">Mesa </label>
+          <input type="text" name="mesa" class="form-control" id="inputAddress2" placeholder="Mesa">
         </div>
 
         
@@ -139,5 +142,5 @@
 
 <button type="submit" class="btn btn-primary btn-block">Registrar</button>
 </form>
-    
+
 @endsection

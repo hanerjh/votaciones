@@ -65,7 +65,7 @@
           <div class="bg-white py-2 collapse-inner rounded">          
             <a class="collapse-item" href="blank.html">Amigos</a>
             <a class="collapse-item" href="cards.html">Lideres</a>
-            <a class="collapse-item" href="cards.html">Lugar de votacion</a>
+            <a class="collapse-item" href="cards.html">Lugar de votacion</a>           
           </div>
         </div>
       </li>
@@ -74,14 +74,13 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Informes</span>
+          <span>Registrar zonas</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Informes</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
+          <div class="bg-white py-2 collapse-inner rounded">           
+            <a class="collapse-item" href="utilities-color.html">Barrios</a>
+            <a class="collapse-item" href="utilities-border.html">Comunas</a>
+            <a class="collapse-item" href="utilities-animation.html">Municipios</a>
             <a class="collapse-item" href="utilities-other.html">Other</a>
           </div>
         </div>
@@ -298,10 +297,10 @@
           <h1 class="h3 mb-4 text-gray-800">REGISTRO DE AMIGO</h1>
 
           <div class="row">
-             <div class="col-7">
+             <div class="col-7" id="space-vue">
               
                  @yield('content')
-
+                 @{{puestovotaciones}}
              </div>
           </div>
 
@@ -360,7 +359,9 @@
 
   <!-- Custom scripts for all pages-->
   <script src="customstyle/js/sb-admin-2.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="js/vue.js"></script>
 </body>
 
 </html>
