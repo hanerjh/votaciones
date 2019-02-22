@@ -361,6 +361,8 @@
   <script src="customstyle/js/sb-admin-2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
   <script src="js/vue.js"></script>
 </body>
 

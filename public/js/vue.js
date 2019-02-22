@@ -1,15 +1,51 @@
+Vue.component('component-list',{
+mixins: [Vue2Filters.mixin],
+props:['lists','input'],
+data(){
+    return{
+        itemlistselect:"",
+        visible:"true"
+    }
+},
+methods:{
+    selectedItem(){
+       
+        this.$emit('itembarrio',event.target.textContent);
+        this.$emit('itemidbarrio',event.target.attributes[0].nodeValue);
+        console.log(event.target.attributes[0].nodeValue);
+        console.log(event.target.textContent);       
+        this.visible=!this.visible;
+    }
+},
+template: `
+<ul class="list-group" v-show="visible">
+<li class="list-group-item" v-for="barr in filterBy(lists,input)"   :itemlistselect="barr.idbarrio" v-on:click="selectedItem">{{barr.barrio}}</li>
+   
+</ul>
+`
+});
+
+
 var appvue= new Vue({
     el:'#space-vue',
+    
         data() {
         return {
+           
             itemlist:"",
+            inputbarrio:"",
+            idbarrio:"",
             selectedregion:"",
             selectedmunicipio:"",
+            selectedpuesto:"",
             departamentos:[],
-            municipios:[],          
+            municipios:[],  
+            municipiosPersona:[],         
             barrios:[],
             puestovotaciones:[],
-            comunas:[]            
+            comunas:[],
+            mesas:[],
+            lista:[]             
         }
         
     },mounted(){
@@ -52,6 +88,33 @@ var appvue= new Vue({
               }); 
               
         },
+        cargarMunicipioPersona: function(event){
+            console.log("llego"+ event.target.value);
+
+       
+                      
+            axios.get('locationmpersona/'+event.target.value)
+            .then((response)=>{
+                this.municipiosPersona = response.data               
+            }).catch(function (error) {
+                console.log(error);
+                
+              }); 
+              
+        },
+        cargarcomunasPersona: function(event){
+            console.log("llego"+ event.target.value);
+                      
+            axios.get('locationcomunapersona/'+event.target.value)
+            .then((response) => {
+                this.lista = response.data
+                console.log(this.lista);
+            }).catch(function (error) {
+                console.log(error);
+                
+              }); 
+              
+        },
         cargarPuestosVotacion: function(){
 
          
@@ -59,6 +122,19 @@ var appvue= new Vue({
                   .then(response => (this.puestovotaciones = response.data)).catch(function(error){
                       console.log(error);
                   });
+        },
+        cargarmesas: function(){
+            axios.get('locationmesas/'+this.selectedpuesto)
+                  .then(response => (this.mesas = response.data)).catch(function(error){
+                      console.log(error);
+                  });
+        }
+    },
+    computed:{
+        searchbarrio: function(){
+            
+            return this.lista[1].filters((barrio)=>barrio.barrio.includes(this.inputbarrio));
+            //return this.lista[1].filter((barrio) => barrio.barrio.includes(this.inputbarrio));
         }
     }
 })

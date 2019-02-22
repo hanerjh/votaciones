@@ -47,6 +47,27 @@ class LocationController extends Controller
        return $datosmunicipio;
     }
 
+    /**
+     * carga los municipios en la seccion de personas.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function municipios_persona($id)
+    {
+        $datosmunicipio = DB::table('municipio')->leftJoin('departamentos', 
+        'municipio.departamentos_coddepartamentos', '=', 'departamentos.coddepartamentos')
+        ->where('municipio.departamentos_coddepartamentos',"=",$id)
+        ->select('codmunicipio', 'municipio')
+        ->orderBy('municipio','asc')
+        ->get();
+
+      
+        return $datosmunicipio;
+       
+
+    }
+
      /**
      * Display the specified resource.
      *
@@ -55,11 +76,23 @@ class LocationController extends Controller
      */
     public function puestovotaciones($id)
     {
-        $datospuestovotacion = DB::table('puesto_votacion')->leftJoin('municipio', 
-        'puesto_votacion.municipio_codmunicipio', '=', 'municipio.codmunicipio')
+        /*//lanza todos los puestos de votacion
+        $datospuestovotacion = DB::table('puesto_votacion')
+        ->leftJoin('municipio','puesto_votacion.municipio_codmunicipio', '=', 'municipio.codmunicipio')       
+        ->where('puesto_votacion.municipio_codmunicipio',"=",$id)
+        ->select('idpuesto_votacion', 'nombre')
+        ->orderBy('nombre','asc')       
+        ->get();*/
+
+        
+        //lanza los puesto de votacion que ya tienen mesas asignadas
+        $datospuestovotacion = DB::table('puesto_votacion')
+        ->leftJoin('municipio','puesto_votacion.municipio_codmunicipio', '=', 'municipio.codmunicipio')
+        ->join('mesa','puesto_votacion.idpuesto_votacion','=','mesa.puesto_mesa')
         ->where('puesto_votacion.municipio_codmunicipio',"=",$id)
         ->select('idpuesto_votacion', 'nombre')
         ->orderBy('nombre','asc')
+        ->groupBy('idpuesto_votacion', 'nombre')
         ->get();
        
        return $datospuestovotacion;
@@ -71,14 +104,27 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function comuna($id)
+    public function comunas_persona($id)
     {
-        $datosmunicipio = DB::table('municipio')->leftJoin('departamentos', 
-        'municipio.departamentos_coddepartamentos', '=', 'departamentos.coddepartamentos')
-        ->where('municipio.departamentos_coddepartamentos',"=",$id)
-        ->select('codmunicipio', 'municipio')
+        $comunas = DB::table('comuna')->leftJoin('municipio', 
+        'comuna.municipio_codmunicipio', '=', 'municipio.codmunicipio')
+        ->where('comuna.municipio_codmunicipio',"=",$id)
+        ->select('idcomuna', 'comuna')
         ->get();
-       return $datosmunicipio;
+
+        $lista = DB::table('barrio')
+        ->join('comuna','barrio.comuna_idcomuna', '=','comuna.idcomuna' )
+        ->join('municipio','comuna.municipio_codmunicipio', '=', 'municipio.codmunicipio' )        
+        ->where('municipio.codmunicipio','=',$id)
+        ->select('idbarrio', 'barrio')
+        ->groupBy('idbarrio', 'barrio')
+        ->get();
+
+      
+     
+        
+        //return Response::json(array('comunas' => $comunas, 'barrio' => $lista));
+       return array($comunas, $lista);
     }
 
      /**
@@ -89,13 +135,32 @@ class LocationController extends Controller
      */
     public function barrio($id)
     {
-        $datosmunicipio = DB::table('municipio')->leftJoin('departamentos', 
-        'municipio.departamentos_coddepartamentos', '=', 'departamentos.coddepartamentos')
-        ->where('municipio.departamentos_coddepartamentos',"=",$id)
-        ->select('codmunicipio', 'municipio')
-        
+        $lista = DB::table('barrio')
+        ->join('comuna','barrio.comuna_idcomuna', '=','comuna.idcomuna' )
+        ->join('municipio','comuna.municipio_codmunicipio', '=', 'municipio.codmunicipio' )
+        ->where('municipio.codmunicipio',"=",$id)
+        ->select('idbarrio', 'barrio')
         ->get();
-       return $datosmunicipio;
+
+       
+       return $lista;
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function mesas($id)
+    {
+        $mesas = DB::table('mesa')->leftJoin('puesto_votacion', 
+        'mesa.puesto_mesa', '=', 'puesto_votacion.idpuesto_votacion')
+        ->where('mesa.puesto_mesa',"=",$id)
+        ->select('idmesa', 'mesa')
+        ->orderBy('mesa','asc')        
+        ->get();
+       return $mesas;
     }
 
 }

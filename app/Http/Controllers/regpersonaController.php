@@ -39,10 +39,26 @@ class regpersonaController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->input('municipio');
-        $name2 = $request->input('mesa');
-        //$name=$request->all();
-        return $name;
+        //$name = $request->input('municipio');
+        //$name2 = $request->input('mesa');
+        $name=$request->all();
+
+    
+        
+     dd($name);
+       
+
+      /*  DB::table('persona')->insert(
+            ['documento' => $request->documento, 'nombre' => $request->nombre, 
+            'apellido' =>   $request->apellido , 'fechaNacimiento' =>  $request->fechaNacimiento,
+            'sexo' =>  $request->genero , 'correo' => $request->email, 'telefono' => $request->telefono,
+             'comuna' =>   $request->comuna, 'barrio' => $request->barrio,
+            'direccion' => $request->direccion, 'fkpuesto_votacion' => $request->puesto, 'fk_mesa' => $request->mesa,
+            'municipio' =>$request->municipio
+            ]
+        );*/
+
+        //return "INFORMACION ALMACENADA";
     }
 
     /**

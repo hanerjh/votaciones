@@ -20,3 +20,7 @@ Route::resource('/ingresar','regpersonaController');
 Route::get('/locationm/{id}','locationController@municipios');
 Route::get('/locationd/{id}','locationController@departamentos');
 Route::get('/locationpv/{id}','locationController@puestovotaciones');
+Route::get('/locationmesas/{id}','locationController@mesas');
+
+Route::get('/locationmpersona/{id}','locationController@municipios_persona');
+Route::get('/locationcomunapersona/{id}','locationController@comunas_persona');
