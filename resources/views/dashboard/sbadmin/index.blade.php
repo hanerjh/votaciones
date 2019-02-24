@@ -10,16 +10,16 @@
           <legend class="text-light bg-dark px-2">Informacion personal</legend>
        </div>
       <div class="form-group col-md-4">
-          <label for="inputEmail4">Documento</label>
-          <input type="text" name="documento" class="form-control"  placeholder="Cedula">
+          <label for="inputEmail4">* Documento</label>
+          <input type="text" name="documento" class="form-control" v-model="documento" @blur="onBlur()"  placeholder="Cedula">
         </div>
 
       <div class="form-group col-md-4">
-        <label for="inputEmail4">Nombre</label>
+        <label for="inputEmail4">* Nombre</label>
         <input type="text"  name="nombre" class="form-control"  placeholder="Ingresar nombre">
       </div>
       <div class="form-group col-md-4">
-        <label for="inputPassword4">Apellido</label>
+        <label for="inputPassword4">* Apellido</label>
         <input type="text"  name="apellido" class="form-control" id="inputPassword4" placeholder="Ingresar Apellido">
       </div>
     </div>
@@ -44,7 +44,7 @@
     <input type="email"  name="email" class="form-control" id="inputEmail4" placeholder="Email">
   </div>
   <div class="form-group col-md-5">
-    <label for="inputPassword4">Telefono/Celular</label>
+    <label for="inputPassword4">* Telefono/Celular</label>
     <input type="text"  name="telefono" class="form-control" id="inputPassword4" placeholder="telefono">
   </div>
 
@@ -72,7 +72,7 @@
 
       <div class="form-group col-md-4">
         <label for="inputState">Comuna</label>
-        <select id="inputState"  name="comuna" class="form-control">
+        <select id="inputState"  name="comuna" class="form-control" v-model="idcomuna">
           <option value="">Seleccione...</option>
         <option v-for="comuna in lista[0]"  v-bind:value="comuna.idcomuna">@{{comuna.comuna}}</option>
         </select>
@@ -80,15 +80,15 @@
 
   <div class="form-group col-md-5">
   <label for="inputAddress">Barrio</label>
-  <input type="text"  class="form-control" id="inputAddress" v-model="inputbarrio"  placeholder="Cascajal, Transformacion...">
-  <input type="hidden"  name="barrio"  class="form-control" id="inputAddress" :value="idbarrio">
+  <!--<input type="text"  class="form-control" id="inputAddress" v-model="inputbarrio"  placeholder="Cascajal, Transformacion...">-->
+  <input type="hidden"  name="barrio"  class="form-control" id="inputAddress" :value="idbarrio" v-on:keyup="">
 
-  <component-list v-bind:lists="lista[1]" v-bind:input="inputbarrio" v-on:itembarrio="inputbarrio=$event" v-on:itemidbarrio="idbarrio=$event"></component-list>
-  @{{idbarrio}}
+  <component-list v-bind:lists="lista[1]" v-bind:input="inputbarrio"  v-on:itemidbarrio="idbarrio=$event"  v-on:itemidcomuna="idcomuna=$event"></component-list>
+  @{{idbarrio}} - @{{idcomuna}}
   </div>
 
   <div class="form-group col-md-7">
-    <label for="inputAddress2">Direccion</label>
+    <label for="inputAddress2">* Direccion</label>
     <input type="text" name="direccion" class="form-control" id="inputAddress2" placeholder="1234 Main St">
   </div>
 </div>

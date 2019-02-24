@@ -116,8 +116,8 @@ class LocationController extends Controller
         ->join('comuna','barrio.comuna_idcomuna', '=','comuna.idcomuna' )
         ->join('municipio','comuna.municipio_codmunicipio', '=', 'municipio.codmunicipio' )        
         ->where('municipio.codmunicipio','=',$id)
-        ->select('idbarrio', 'barrio')
-        ->groupBy('idbarrio', 'barrio')
+        ->select('idbarrio', 'barrio','comuna.idcomuna')
+        ->groupBy('idbarrio', 'barrio','comuna.idcomuna')
         ->get();
 
       

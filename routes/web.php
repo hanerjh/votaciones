@@ -24,3 +24,6 @@ Route::get('/locationmesas/{id}','locationController@mesas');
 
 Route::get('/locationmpersona/{id}','locationController@municipios_persona');
 Route::get('/locationcomunapersona/{id}','locationController@comunas_persona');
+
+// se evalua si el documento ingresado ya esta en la BD
+Route::get('/evaluardocumento/{id}','regpersonaController@eval_documento');

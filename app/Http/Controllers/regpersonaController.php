@@ -111,4 +111,21 @@ class regpersonaController extends Controller
     {
         //
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function eval_documento($id)
+    {
+        $documento = DB::table('persona')
+        ->where('documento',"=",$id)
+        ->select('documento', 'nombre')
+        ->get();
+       
+       return $documento;
+    }
+
 }
