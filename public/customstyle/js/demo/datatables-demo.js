@@ -15,25 +15,12 @@ $.ajaxSetup({
 
 });
 
-  $('#dataTable').DataTable({
-    select: true,
+  $('#dataTable').DataTable( {
+    dom: 'Bfrtip',
     buttons: [
-        { extend: 'create', editor: editor },
-        { extend: 'edit',   editor: editor },
-        { extend: 'remove', editor: editor },
-        {
-            extend: 'collection',
-            text: 'Export',
-            buttons: [
-                'copy',
-                'excel',
-                'csv',
-                'pdf',
-                'print'
-            ]
-        }
+        'copy', 'csv', 'excel', 'pdf', 'print'
     ]
-  });
+});
   
   $('.iteminput').editable({
     url: '/actualizarlider'
