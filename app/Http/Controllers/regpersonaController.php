@@ -41,14 +41,14 @@ class regpersonaController extends Controller
     {
         //$name = $request->input('municipio');
         //$name2 = $request->input('mesa');
-        $name=$request->all();
+      //  $name=$request->all();
 
     
         
-     dd($name);
+     //dd($name);
        
 
-      /*  DB::table('persona')->insert(
+       DB::table('persona')->insert(
             ['documento' => $request->documento, 'nombre' => $request->nombre, 
             'apellido' =>   $request->apellido , 'fechaNacimiento' =>  $request->fechaNacimiento,
             'sexo' =>  $request->genero , 'correo' => $request->email, 'telefono' => $request->telefono,
@@ -56,9 +56,9 @@ class regpersonaController extends Controller
             'direccion' => $request->direccion, 'fkpuesto_votacion' => $request->puesto, 'fk_mesa' => $request->mesa,
             'municipio' =>$request->municipio
             ]
-        );*/
+        );
 
-        //return "INFORMACION ALMACENADA";
+        return "INFORMACION ALMACENADA";
     }
 
     /**

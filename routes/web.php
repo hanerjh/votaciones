@@ -14,7 +14,9 @@
 Route::get('/', function () {
     return view('login');
 });
-
+//rutas para alideres
+Route::get('/registrarlider','regliderController@index');
+Route::post('/actualizarlider','regliderController@actualizar');
 
 Route::resource('/ingresar','regpersonaController');
 Route::get('/locationm/{id}','locationController@municipios');

@@ -1,8 +1,8 @@
 @extends('../../layout.layout')
-
+@section('titulo','REGISTRO DE AMIGO')
 @section('content')
 
-
+<div class="col-8" >
 <form action="ingresar/" method="POST" >
     @csrf
   <div class="form-row">
@@ -160,5 +160,6 @@
 
 <button type="submit" class="btn btn-primary btn-block">Registrar</button>
 </form>
+</div>
 dd($municipiosPersona);
 @endsection

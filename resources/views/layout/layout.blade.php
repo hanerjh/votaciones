@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>Amigos de Hardany Cedeño</title>
 
@@ -17,6 +18,9 @@
 
   <!-- Custom styles for this template-->
   <link href="customstyle/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="customstyle/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"  rel="stylesheet">
+ 
 
 </head>
 
@@ -63,8 +67,8 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">          
-            <a class="collapse-item" href="blank.html">Amigos</a>
-            <a class="collapse-item" href="cards.html">Lideres</a>
+            <a class="collapse-item" href="/ingresar">Amigos</a>
+            <a class="collapse-item" href="/registrarlider">Lideres</a>
             <a class="collapse-item" href="cards.html">Lugar de votacion</a>           
           </div>
         </div>
@@ -294,14 +298,14 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">REGISTRO DE AMIGO</h1>
+          <h1 class="h3 mb-4 text-gray-800">@yield("titulo")</h1>
 
-          <div class="row">
-             <div class="col-7" id="space-vue">
+          <div class="row" id="space-vue">
+            
               
                  @yield('content')
-                 @{{puestovotaciones}}
-             </div>
+                
+            
           </div>
 
         </div>
@@ -351,6 +355,7 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
+ 
   <script src="customstyle/vendor/jquery/jquery.min.js"></script>
   <script src="customstyle/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -361,9 +366,40 @@
   <script src="customstyle/js/sb-admin-2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Page level plugins -->
+    
+    
+    <script src="customstyle/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="customstyle/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.4/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.print.min.js"></script>
+    
+
+
+
+
+
+
   
+    <!-- Page level custom scripts -->
+   
+    <script src="customstyle/js/demo/datatables-demo.js"></script>
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/css/jqueryui-editable.css" rel="stylesheet"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/js/jqueryui-editable.min.js"></script>
+    
+   
+
+
   <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
   <script src="js/vue.js"></script>
 </body>
+
 
 </html>

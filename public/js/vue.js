@@ -50,6 +50,7 @@ var appvue= new Vue({
     
         data() {
         return {
+            mensajes:"",
             documento:"",
             itemlist:"",
             inputbarrio:"",
