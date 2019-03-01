@@ -134,9 +134,7 @@ var appvue= new Vue({
               
         },
         cargarMunicipioPersona: function(event){
-            console.log("llego"+ event.target.value);
-
-       
+            console.log("llego"+ event.target.value);     
                       
             axios.get('locationmpersona/'+event.target.value)
             .then((response)=>{
@@ -160,10 +158,21 @@ var appvue= new Vue({
               }); 
               
         },
+        cargarBarrios: function(event){
+            axios.get('locationbarrio/'+event.target.value)
+            .then(response => (this.barrios = response.data)).catch(function(error){
+                console.log(error);
+            });
+        },
         cargarPuestosVotacion: function(){
-
-         
+          //carga los puestos de votaciones que tienen mesas asignadas
             axios.get('locationpv/'+this.selectedmunicipio)
+                  .then(response => (this.puestovotaciones = response.data)).catch(function(error){
+                      console.log(error);
+                  });
+        },cargarPuestosVotaciongeneral: function(){
+         //carga los puestos de votaciones completos
+            axios.get('locationpuestos_votacion_generales/'+event.target.value)
                   .then(response => (this.puestovotaciones = response.data)).catch(function(error){
                       console.log(error);
                   });

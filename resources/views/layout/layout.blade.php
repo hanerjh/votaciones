@@ -51,7 +51,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/dashboard">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -68,13 +68,14 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Registrar Amigos</span>
+          <span>Registrar</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">          
-            <a class="collapse-item" href="/ingresar">Amigos</a>
-            <a class="collapse-item" href="/registrarlider">Lideres</a>
-            <a class="collapse-item" href="cards.html">Lugar de votacion</a>           
+            <a class="collapse-item" href="/ingresar">Registrar Usuario</a>
+            <a class="collapse-item" href="/registrarlider">Modificar Usuario</a>
+            <a class="collapse-item" href="/registrarpuestovotacion">Reg. Lugar de votacion</a>    
+            <a class="collapse-item" href="/registrarmesa">Registrar Mesa</a>        
           </div>
         </div>
       </li>
@@ -369,16 +370,21 @@
 
   <!-- Custom scripts for all pages-->
   <script src="customstyle/js/sb-admin-2.min.js"></script>
+
+   <!-- charts Page level plugins -->
+   <script src="customstyle/vendor/chart.js/Chart.min.js"></script>
+   <script src="customstyle/js/demo/chart-area-demo.js"></script>
+   <script src="customstyle/js/demo/chart-pie-demo.js"></script>
+
+   
+   <!-- VUE  scripts -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- Page level plugins -->
     
     
     <script src="customstyle/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="customstyle/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-   
-
+    <script src="customstyle/vendor/datatables/dataTables.bootstrap4.min.js"></script> 
  
   
     <script src=" https://cdn.datatables.net/buttons/1.5.4/js/dataTables.buttons.min.js" type="text/javascript"></script>

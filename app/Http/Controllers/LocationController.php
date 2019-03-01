@@ -67,6 +67,24 @@ class LocationController extends Controller
        
 
     }
+  /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function puestovotacionesgeneral($id)
+    {
+        //lanza todos los puestos de votacion
+        $datospuestovotacion = DB::table('puesto_votacion')
+        ->leftJoin('municipio','puesto_votacion.municipio_codmunicipio', '=', 'municipio.codmunicipio')       
+        ->where('puesto_votacion.municipio_codmunicipio',"=",$id)
+        ->select('idpuesto_votacion', 'nombre')
+        ->orderBy('nombre','asc')       
+        ->get();       
+       
+       return $datospuestovotacion;
+    }
 
      /**
      * Display the specified resource.
@@ -139,6 +157,26 @@ class LocationController extends Controller
         ->join('comuna','barrio.comuna_idcomuna', '=','comuna.idcomuna' )
         ->join('municipio','comuna.municipio_codmunicipio', '=', 'municipio.codmunicipio' )
         ->where('municipio.codmunicipio',"=",$id)
+        ->select('idbarrio', 'barrio')
+        ->get();
+
+       
+       return $lista;
+    }
+
+    
+     /**
+      *  llenar el combobox de registro de puesto de votacion
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function barriosgeneral($id)
+    {
+        $lista = DB::table('barrio')
+        ->join('comuna','barrio.comuna_idcomuna', '=','comuna.idcomuna' )
+        ->where('barrio.comuna_idcomuna',"=",$id)
         ->select('idbarrio', 'barrio')
         ->get();
 
