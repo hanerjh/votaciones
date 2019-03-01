@@ -79,8 +79,8 @@ class LocationController extends Controller
         $datospuestovotacion = DB::table('puesto_votacion')
         ->leftJoin('municipio','puesto_votacion.municipio_codmunicipio', '=', 'municipio.codmunicipio')       
         ->where('puesto_votacion.municipio_codmunicipio',"=",$id)
-        ->select('idpuesto_votacion', 'nombre')
-        ->orderBy('nombre','asc')       
+        ->select('idpuesto_votacion', 'nombre_puesto')
+        ->orderBy('nombre_puesto','asc')       
         ->get();       
        
        return $datospuestovotacion;
@@ -108,9 +108,9 @@ class LocationController extends Controller
         ->leftJoin('municipio','puesto_votacion.municipio_codmunicipio', '=', 'municipio.codmunicipio')
         ->join('mesa','puesto_votacion.idpuesto_votacion','=','mesa.puesto_mesa')
         ->where('puesto_votacion.municipio_codmunicipio',"=",$id)
-        ->select('idpuesto_votacion', 'nombre')
-        ->orderBy('nombre','asc')
-        ->groupBy('idpuesto_votacion', 'nombre')
+        ->select('idpuesto_votacion', 'nombre_puesto')
+        ->orderBy('nombre_puesto','asc')
+        ->groupBy('idpuesto_votacion', 'nombre_puesto')
         ->get();
        
        return $datospuestovotacion;

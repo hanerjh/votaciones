@@ -17,13 +17,19 @@ class regliderController extends Controller
     public function index()
     {
        
-        $personas = DB::table('persona')
+        /*$personas = DB::table('persona')
         ->join('tipousuario','idtipousuario','=','persona.fktipousuario')      
+        ->get();*/
+
+        $personas = DB::table('persona')
+        ->join('tipousuario','idtipousuario','=','persona.fktipousuario')    
+        ->join('mesa','idmesa','=','persona.fk_mesa')
+        ->join('puesto_votacion','idpuesto_votacion','=','mesa.puesto_mesa')  
         ->get();     
 
         $tpusuario=DB::table('tipousuario')->get();
       
-       
+      // dd($personas);
         return view('dashboard/sbadmin/reglider',compact('personas','tpusuario'));
     }
 

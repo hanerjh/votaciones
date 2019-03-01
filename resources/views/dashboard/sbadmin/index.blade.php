@@ -135,7 +135,7 @@
         <label for="inputState">Puesto de Votación</label>
         <select id="inputState"  name="puesto" class="form-control" v-on:Change="cargarmesas($event)" v-model="selectedpuesto">
           <option selected>Seleccione...</option>
-          <option v-for="puesto in puestovotaciones" v-bind:value="puesto.idpuesto_votacion">@{{puesto.nombre}}</option>
+          <option v-for="puesto in puestovotaciones" v-bind:value="puesto.idpuesto_votacion">@{{puesto.nombre_puesto}}</option>
         </select>
       </div>
 

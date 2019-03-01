@@ -35,6 +35,8 @@ $lista="[";
             <th>Correo</th>
             <th>Telefono</th>
             <th>Tipo Usuario</th>
+            <th>Puesto votacion</th>
+            <th>Mesa</th>
           </tr>
         </thead>
         <tfoot>
@@ -46,6 +48,8 @@ $lista="[";
             <th>Correo</th>
             <th>Telefono</th>
             <th>Tipo Usuario</th>
+            <th>Puesto votacion</th>
+            <th>Mesa</th>
           </tr>
         </tfoot>
         <tbody>
@@ -62,7 +66,9 @@ $lista="[";
                  <td  class="iteminput" data-name="correo" data-type="text" data-pk="{{$persona->idpersona}}" >{{$persona->correo}}</td>
                  <td  class="iteminput" data-name="telefono"  data-type="text" data-pk="{{$persona->idpersona}}" >{{$persona->telefono}}</td>
               <td  class="itemselect" data-name="fktipousuario" data-type="select" data-pk="{{$persona->idpersona}}" data-source="{{$lista}}" data-value="{{$persona->fktipousuario}}" >{{$persona->tipousuario}}</td>
-             </tr>
+              <td>{{$persona->nombre_puesto}}</td>
+              <td>{{$persona->mesa}}</td>
+            </tr>
                 
             @endforeach
          
