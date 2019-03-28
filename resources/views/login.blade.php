@@ -39,12 +39,15 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form class="user">
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                   <form class="user" name="" method="POST" action="{{ route('login')}}">
+                    {{ csrf_field() }}
+                   <div class="form-group {{$errors->has('email') ? 'was-invalid':''}}">
+                      <input type="email" name="email" class="form-control " {{old('email')}} id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      {!! $errors->first('email','<small>:message</small>')!!}
                     </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                    <div class="form-group {{$errors->has('pass') ? 'was-invalidated':''}}">                    
+                      <input type="password" name="pass" class="form-control " id="exampleInputPassword" placeholder="Password">
+                      {!! $errors->first('pass','<small>:message</small>')!!}
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -52,10 +55,12 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
+                    <input type="submit" class="btn btn-primary btn-user btn-block" value="INGRESAR">
                     <a href="/ingresar" class="btn btn-primary btn-user btn-block">
                       Login
                     </a>
                     <hr>
+                    {!! $errors->first('mensaje','<small>:message</small>')!!}
                     <a href="index.html" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Login with Google
                     </a>

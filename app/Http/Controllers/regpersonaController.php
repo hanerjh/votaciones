@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MensajeEnviado;
+use Illuminate\Support\Facades\Hash;
 
 class regpersonaController extends Controller
 {
@@ -42,23 +46,45 @@ class regpersonaController extends Controller
         //$name = $request->input('municipio');
         //$name2 = $request->input('mesa');
       //  $name=$request->all();
-
-    
-        
      //dd($name);
-       
+    /* Validator::make($request->all(), [
+        'documento'   => 'required|string',
+        'started_at'    => 'required|date',
+        'finished_at'   => 'required|date|after:started_at',
+     ]);*/
 
+  $validarDatos= $request->validate([
+      'documento'=>'required|min:5|max:16',
+      'nombre'=>'required|string|min:2',
+      'apellido'=>'required|string|min:2',
+      'direccion'=>'required',
+      'email'=>'email',      
+      'telefono'=>'required',
+      'region'=>'required',
+      'municipio_votacion'=>'required',
+      'departamento_votacion'=>'required',
+      'mesa'=>'required',
+      'puesto'=>'required',
+      
+  ]);
+
+  $pass=str_random(8);
+  $hashed_random_password = Hash::make($pass);
+  $id_session_user=$request->session()->get('iduser');
        DB::table('persona')->insert(
             ['documento' => $request->documento, 'nombre' => $request->nombre, 
             'apellido' =>   $request->apellido , 'fechaNacimiento' =>  $request->fechaNacimiento,
             'sexo' =>  $request->genero , 'correo' => $request->email, 'telefono' => $request->telefono,
              'comuna' =>   $request->comuna, 'barrio' => $request->barrio,
             'direccion' => $request->direccion, 'fkpuesto_votacion' => $request->puesto, 'fk_mesa' => $request->mesa,
-            'municipio' =>$request->municipio
+            'municipio' =>$request->municipio, 'password' => $hashed_random_password, 'idpersonalider'=>$id_session_user
             ]
         );
 
-        return "INFORMACION ALMACENADA";
+       $msn=$request->email." / ".$pass;
+        Mail::to($request->email)->send(new MensajeEnviado($msn));
+        //Hash::make($data['password'])
+        return "INFORMACION ALMACENADA".$msn;
     }
 
     /**
@@ -121,11 +147,55 @@ class regpersonaController extends Controller
     public function eval_documento($id)
     {
         $documento = DB::table('persona')
-        ->where('documento',"=",$id)
-        ->select('documento', 'nombre')
+        ->select(DB::raw('CONCAT(nombre, " ", apellido) as nombre'))
+        ->where('documento',"=",$id)        
         ->get();
        
        return $documento;
     }
+
+    public function formchangepass(){
+       
+        return view('dashboard.sbadmin.profile.cambiar_password');
+    }
+    //ACTUALIZAR PASSWORD Y ENVIAR AL CORREO
+    public function changepassword(Request $request)
+    {
+        $validarDatos= $request->validate([
+            'documento'=>'required', 
+        ]);
+        $documento=$request->documento;
+        //BUSCAMOS AL USUARIO PARA EXTRAER SU CORREO Y ENVIARLE EL NUEVO PASSWORD
+        $datos="";
+
+        $datos = DB::table('persona')        
+        ->where('documento',"=",$documento)
+        ->select('correo','nombre','apellido')
+        ->get();      
+       
+        if(is_null($datos))
+        {
+            $pass=str_random(8);
+            $hashed_random_password = Hash::make($pass); 
+            $msn=$datos[0]->correo." / ".$pass;
+           DB::table('persona')
+                ->where('documento', $documento)
+                ->update(['password' => $hashed_random_password]);
+    
+             Mail::to($datos[0]->correo)->send(new MensajeEnviado($msn));
+
+             //return back()->with(['m'=>'Se ha enviado la nueva contraseña a'.$datos[0]->nombre." ".$datos[0]->apellido]);
+        }
+        else{
+           // dd($datos);
+           return back()->withErrors(['mensaje'=>'EL NUMERO DE DOCUMENTO NO SE ENCUENTRA EN NUESTROS REGISTROS']);
+          
+        }
+       
+       
+
+      
+    }
+
 
 }

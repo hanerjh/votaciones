@@ -62,4 +62,10 @@ class regliderController extends Controller
        
     }
 
+    public function changepassword(Request $request, $id)
+    {
+        
+       
+    }
+
 }

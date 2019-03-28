@@ -82,19 +82,26 @@ var appvue= new Vue({
             if(this.documento=="")
             {
                 console.log("esta vacio el campo");
+                this.mensajes="Por favor ingresar su documento"
             }
             else{
                 axios.get('evaluardocumento/'+this.documento)
                 .then((response) =>{
-                    respuesta = response.data
+                   
+                    //console.log(response.data);
+                    respuesta = response.data;
+                    
                     if(respuesta!=""){
-                        console.log("ya exite un usuario "+respuesta);
+                        this.mensajes="El usuario "+ respuesta[0].nombre +" ya esta registrado";
+                       
                     }
                     else{
-                        console.log("esta libre");
+                        this.mensajes="";
+                        //console.log("esta libre");
                     }
                     
                 }).catch(function (error) {
+                    this.mensajes="";
                     console.log(error);
                   }); 
             }

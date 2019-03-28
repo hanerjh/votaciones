@@ -73,7 +73,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">          
             <a class="collapse-item" href="/ingresar">Registrar Usuario</a>
-            <a class="collapse-item" href="/registrarlider">Modificar Usuario</a>
+            <a class="collapse-item" href="/registrarlider">Ver Usuario</a>
+            <a class="collapse-item" href="/form_password">Cambiar contraseña</a>
             <a class="collapse-item" href="/registrarpuestovotacion">Reg. Lugar de votacion</a>    
             <a class="collapse-item" href="/registrarmesa">Registrar Mesa</a>        
           </div>
@@ -284,7 +285,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Session::get('user')}}</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -302,8 +303,10 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
+              
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+
                   Logout
                 </a>
               </div>
@@ -368,7 +371,8 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          
+          <a class="btn btn-primary" href="{{ url('logout') }}">Logout</a>
         </div>
       </div>
     </div>
@@ -385,10 +389,7 @@
   <!-- Custom scripts for all pages-->
   <script src="customstyle/js/sb-admin-2.min.js"></script>
 
-   <!-- charts Page level plugins -->
-   <script src="customstyle/vendor/chart.js/Chart.min.js"></script>
-   <script src="customstyle/js/demo/chart-area-demo.js"></script>
-   <script src="customstyle/js/demo/chart-pie-demo.js"></script>
+
 
    
    <!-- VUE  scripts -->
@@ -422,6 +423,12 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
   <script src="js/vue.js"></script>
+
+     <!-- charts Page level plugins -->
+     <script src="customstyle/vendor/chart.js/Chart.min.js"></script>
+     <script src="customstyle/js/demo/chart-area-demo.js"></script>
+     <script src="customstyle/js/demo/chart-pie-demo.js"></script>
+  @yield('script')
 </body>
 
 

@@ -11,13 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('inicio','Auth\LoginController@showLoginForm')->name('inicio');
+Route::post('login','Auth\LoginController@login')->name('login');
+Route::group(['middleware'=>'checkuser'], function(){  
 
-Route::get('/dashboard', function () {
-    return view('dashboard.sbadmin.dash');
-});
+    
+    Route::get('/dashboard','reporteController@index')->name('dashboard');
+    Route::get('/logout','Auth\LoginController@logout')->name('logout');
+
+    Route::get('/form_password','regpersonaController@formchangepass');
+    Route::post('/cambiar_password','regpersonaController@changepassword');
+
 
 //rutas para alideres
 Route::get('/registrarlider','regliderController@index');
@@ -44,3 +48,9 @@ Route::get('/locationcomunapersona/{id}','locationController@comunas_persona');
 
 // se evalua si el documento ingresado ya esta en la BD
 Route::get('/evaluardocumento/{id}','regpersonaController@eval_documento');
+
+//REPORTES
+Route::get('reportes/','reporteController@index');
+});
+
+
