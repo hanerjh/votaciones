@@ -52,9 +52,38 @@ class reporteController extends Controller
         ->where('lider.idpersona',$id_session_user)                         
         ->count();
        
+        //CANTIDAD DE PUESTOS DE VOTACION POR ZONAS
+        $total_puestos_zonas=DB::table("puesto_votacion as puesto")
+        ->leftJoin('zona', 'puesto.fk_zona', '=', 'zona.idzona')  
+        ->select('zona.zona',DB::raw('COUNT(puesto.idpuesto_votacion) as cantidad'))
+        ->groupBy('zona')
+        ->get();
+
+        // TOTAL DE VOTOS EN EL SISTEMA PARA LA ULTIMA CAMPAÑA
+
+        $vigencia_eleccion=DB::table('campanna')  
+        ->select('ano','fecha_cierre','estado','idcampanna')
+        ->orderBy('idcampanna','desc')
+        ->limit(1)       
+        ->first();
+
+        $total_votos=DB::table("persona_has_campanna as votacion") 
+        ->where('campanna_idcampanna',$vigencia_eleccion->idcampanna)       
+        ->count();
+
+        //CANTIDAD VOTOS DE USUARIOS REGISTRADOS POR LIDERES
+        $total_votos_usu_lider=DB::table("persona as lider")
+        ->rightJoin('persona as usuario', 'lider.idpersona', '=', 'usuario.idpersonalider')
+        ->join('persona_has_campanna as votacion','usuario.idpersona','=','votacion.persona_idpersona')
+        ->where('lider.idpersona',$id_session_user)                         
+        ->count();
+
+        $faltantes_votos= $cant_usu_reg_lider - $total_votos_usu_lider;
+
+//dd( $total_votos_usu_lider);
         //return $cant_usu_reg_lider;
         //return view('dashboard.sbadmin.dash');
-        return view('dashboard.sbadmin.dash',compact('regiones','departamentos','municipios','cant_usu_registrado','cant_lider_registrado','cant_usu_reg_lider','total_usu_reg_por_lideres'));
+        return view('dashboard.sbadmin.dash',compact('regiones','departamentos','municipios','cant_usu_registrado','cant_lider_registrado','cant_usu_reg_lider','total_usu_reg_por_lideres','total_puestos_zonas','total_votos','total_votos_usu_lider','faltantes_votos'));
     }
 
 }

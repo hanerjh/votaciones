@@ -10,17 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('votacion','votacionController@index');
+Route::post('confirmar_votacion','votacionController@eval_votacion')->name('confirmar_votacion');
+
 
 Route::get('inicio','Auth\LoginController@showLoginForm')->name('inicio');
 Route::post('login','Auth\LoginController@login')->name('login');
+
 Route::group(['middleware'=>'checkuser'], function(){  
 
     
     Route::get('/dashboard','reporteController@index')->name('dashboard');
     Route::get('/logout','Auth\LoginController@logout')->name('logout');
-
+    //resetear passwor de un usuario 
     Route::get('/form_password','regpersonaController@formchangepass');
     Route::post('/cambiar_password','regpersonaController@changepassword');
+    //CAMBIAR MI CONTRASEÑA
+    Route::get('/profilechange_password','regpersonaController@formchangeprofilepass');
+    Route::post('/change_password','regpersonaController@changeprofilepassword');
 
 
 //rutas para alideres

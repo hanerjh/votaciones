@@ -158,7 +158,13 @@ class regpersonaController extends Controller
        
         return view('dashboard.sbadmin.profile.cambiar_password');
     }
-    //ACTUALIZAR PASSWORD Y ENVIAR AL CORREO
+
+    public function formchangeprofilepass(){
+       
+        return view('dashboard.sbadmin.profile.changeprofile_password');
+    }
+
+    //ACTUALIZAR PASSWORD DE USUARIO Y ENVIAR AL CORREO
     public function changepassword(Request $request)
     {
         $validarDatos= $request->validate([
@@ -172,8 +178,8 @@ class regpersonaController extends Controller
         ->where('documento',"=",$documento)
         ->select('correo','nombre','apellido')
         ->get();      
-       
-        if(is_null($datos))
+       //dd($datos);
+        if(!is_null($datos))
         {
             $pass=str_random(8);
             $hashed_random_password = Hash::make($pass); 
@@ -191,6 +197,34 @@ class regpersonaController extends Controller
            return back()->withErrors(['mensaje'=>'EL NUMERO DE DOCUMENTO NO SE ENCUENTRA EN NUESTROS REGISTROS']);
           
         }
+       
+       
+
+      
+    }
+
+
+    //ACTUALIZAR MI CONTRASEÑA DE PERFIL
+    public function changeprofilepassword(Request $request)
+    {
+        $validarDatos= $request->validate([
+            'pass'=>'required', 
+        ]);
+        $pass=$request->pass;
+        //BUSCAMOS AL USUARIO PARA EXTRAER SU CORREO Y ENVIARLE EL NUEVO PASSWORD
+        $idsession=session('iduser');
+       
+        
+            //$pass=str_random(8);
+            $hashed_random_password = Hash::make($pass); 
+           $msn=$pass;
+           DB::table('persona')
+                ->where('idpersona', $idsession)
+                ->update(['password' => $hashed_random_password]);
+    
+             Mail::to("micorreo@g.com")->send(new MensajeEnviado($msn));
+
+             //return back()->with(['m'=>'Se ha enviado la nueva contraseña a'.$datos[0]->nombre." ".$datos[0]->apellido]);
        
        
 

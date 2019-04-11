@@ -89,7 +89,9 @@
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">           
         <a class="collapse-item" href="utilities-color.html">Registro por lideres </a>
-        <a class="collapse-item" href="utilities-border.html">Puestos por comuna</a>
+        <a class="collapse-item" href="utilities-border.html">Puestos por zonas</a>
+        <a class="collapse-item" href="utilities-border.html">Votos por puestos</a>
+        <a class="collapse-item" href="utilities-border.html">Votos por zonas</a>
         <a class="collapse-item" href="utilities-animation.html">Total de votos</a>
         <a class="collapse-item" href="utilities-other.html">Faltantes por votar</a>
       </div>
@@ -290,7 +292,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/profilechange_password">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>

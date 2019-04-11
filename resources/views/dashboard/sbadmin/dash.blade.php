@@ -70,7 +70,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total de Votos: <span class="font-weight-bold text-gray-800">100</span> </div>
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total de Votos: <span class="font-weight-bold text-gray-800">{{$total_votos}}</span> </div>
                      
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">                          
@@ -98,7 +98,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Cuantos de mis usuarios han votado</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">52</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{$total_votos_usu_lider}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -115,7 +115,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total de amigos por votar</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{$faltantes_votos}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -232,6 +232,33 @@
                     <div class="chart-container" style="position: relative; height:40vh; width:40vw">
                       <canvas id="myChart"></canvas>
                   </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            
+            <!-- Pie Chart -->
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Cantidad de puestos por zonas</h6>
+              
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie">
+                    <ul class="list-unstyled">
+                      @foreach ($total_puestos_zonas as $zona)
+                    <li><span class="badge badge-primary badge-pill">{{$zona->cantidad}}</span> Puestos de votación en la <b> {{$zona->zona}} </b>  </li>
+
+                      @endforeach
+                      
+                     
+                    </ul>  
+                      
                   </div>
                 </div>
               </div>
