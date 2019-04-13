@@ -84,7 +84,7 @@ class regpersonaController extends Controller
        $msn=$request->email." / ".$pass;
         Mail::to($request->email)->send(new MensajeEnviado($msn));
         //Hash::make($data['password'])
-        return "INFORMACION ALMACENADA".$msn;
+        return back()->with('msj','El usuario fue registrado corectamente');
     }
 
     /**
@@ -190,7 +190,7 @@ class regpersonaController extends Controller
     
              Mail::to($datos[0]->correo)->send(new MensajeEnviado($msn));
 
-             //return back()->with(['m'=>'Se ha enviado la nueva contraseña a'.$datos[0]->nombre." ".$datos[0]->apellido]);
+             return back()->with(['msjpass'=>'Se ha enviado la nueva contraseña al correo:'.$datos[0]->correo]);
         }
         else{
            // dd($datos);

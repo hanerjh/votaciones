@@ -89,7 +89,17 @@
         </select>
       </div>
 
+
       <div class="form-group col-md-4">
+        <label for="inputAddress">Barrio</label>
+        <!--<input type="text"  class="form-control" id="inputAddress" v-model="inputbarrio"  placeholder="Cascajal, Transformacion...">-->
+        <input type="hidden"  name="barrio"  class="form-control" id="inputAddress" :value="idbarrio" v-on:keyup="">
+      
+        <component-list  v-bind:lists="lista[1]" v-bind:input="inputbarrio"  v-on:itemidbarrio="idbarrio=$event"  v-on:itemidcomuna="idcomuna=$event"></component-list>
+       <!-- @{{idbarrio}} - @{{idcomuna}}-->
+        </div>
+
+      <div class="form-group col-md-5">
         <label for="inputState">Comuna</label>
         <select id="inputState"  name="comuna" class="form-control" v-model="idcomuna">
           <option value="">Seleccione...</option>
@@ -97,14 +107,7 @@
         </select>
       </div>
 
-  <div class="form-group col-md-5">
-  <label for="inputAddress">Barrio</label>
-  <!--<input type="text"  class="form-control" id="inputAddress" v-model="inputbarrio"  placeholder="Cascajal, Transformacion...">-->
-  <input type="hidden"  name="barrio"  class="form-control" id="inputAddress" :value="idbarrio" v-on:keyup="">
-
-  <component-list v-bind:lists="lista[1]" v-bind:input="inputbarrio"  v-on:itemidbarrio="idbarrio=$event"  v-on:itemidcomuna="idcomuna=$event"></component-list>
-  @{{idbarrio}} - @{{idcomuna}}
-  </div>
+ 
 
   <div class="form-group col-md-7">
     <label for="inputAddress2">* Direccion</label>
@@ -200,6 +203,12 @@
 </div>
 
 <div class="col-md-4">
+  @if (session()->has('msj'))
+  <div class="alert alert-success" role="alert">
+       {{ session('msj')}}
+    </div>
+  @endif
+
     @if($errors->any())
     <div class="alert alert-danger" role="alert">
        <h4>Por favor rellenar los campos que hacen falta.</h4>

@@ -10,6 +10,11 @@
     </div>
     <button type="submit" class="btn btn-primary mb-2 ml-2">Enviar</button>
   </form>
+  @if(session()->has('msjpass'))
+  <div class="alert alert-primary" role="alert">
+   {{ session('msjpass') }}
+  </div>
+  @endif
   {!! $errors->first('mensaje','<small class="text-danger">:message</small>')!!}
  
 </div>

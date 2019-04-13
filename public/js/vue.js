@@ -35,7 +35,7 @@ computed:{
 template: `
 <div>
 <input type="text"  class="form-control" id="inputAddress" v-model="input"  v-on:keyup="mostrar()" placeholder="Cascajal, Transformacion...">
-<ul class="list-group" v-show="visible">
+<ul class="list-group nav_list" v-show="visible">
 
 <li class="list-group-item" v-for="barr in filterBy(lists,input)"   :itemlistselect="barr.idbarrio" :comuna="barr.idcomuna" v-on:click="selectedItem">{{barr.barrio}}</li>
    

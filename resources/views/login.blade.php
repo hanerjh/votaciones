@@ -37,7 +37,7 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Bienvenido</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Bienvenido, Iniciar session</h1>
                   </div>
                    <form class="user" name="" method="POST" action="{{ route('login')}}">
                     {{ csrf_field() }}
@@ -59,10 +59,10 @@
                     <a class="small btn btn-secondary btn-block" href="forgot-password.html">Olvide la contraseña</a>
                     <br>
                     <div class="text-center">
-                        
+                        {!! $errors->first('mensaje','<small class="text-danger">:message</small>')!!}
                       </div>
                     <hr>
-                    {!! $errors->first('mensaje','<small>:message</small>')!!}
+                   
                     
                   </form>
                  

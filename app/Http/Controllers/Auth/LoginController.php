@@ -84,7 +84,7 @@ class LoginController extends Controller
                     //return view('dashboard.sbadmin.dash');
                     //$usuario->nombre;
                 }
-                return back()->withErrors(['mensaje'=>'La contraseña es incorrecta, intentelo de nuevo']);
+                return back()->withErrors(['mensaje'=>'El correo o La contraseña es incorrecta, intentelo de nuevo']);
 
        }  
        return back()->withErrors(['mensaje'=>'Error al iniciar sesion, por favor verifique sus credenciales']);

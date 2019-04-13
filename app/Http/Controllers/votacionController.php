@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\DB;
 class votacionController extends Controller
 {
     public function index(){
-
+       // dd(Carbon::now());
         return view('votacion');
+        
     }
 
     public function eval_votacion(Request $request)

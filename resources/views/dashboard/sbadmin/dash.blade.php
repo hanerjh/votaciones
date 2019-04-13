@@ -107,6 +107,24 @@
                 </div>
               </div>
             </div>
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Cuantos de mis usuarios no han votado</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <a href="/usuariosdeliderfaltantesporvotar/{{ Session::get('iduser')}}"> {{$faltantes_votos}}</a> 
+                      </div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -114,8 +132,10 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total de amigos por votar</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{$faltantes_votos}}</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total de usuarios por votar</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <a href="/totalvotosfaltantes"> {{$total_votos_faltantes}}</a> 
+                    </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -140,11 +160,11 @@
           <div class="row">
 
             <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
+           <!-- <div class="col-xl-8 col-lg-7">
               <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
+                
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Votación por zonas</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -158,14 +178,14 @@
                     </div>
                   </div>
                 </div>
-                <!-- Card Body -->
+               
                 <div class="card-body">
                   <div class="chart-area">
                     <canvas id="myAreaChart"></canvas>
                   </div>
                 </div>
               </div>
-            </div>
+            </div>-->
 
             <!-- Pie Chart -->
             <div class="col-xl-4 col-lg-5">
@@ -212,7 +232,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Votacion por Zonas</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -263,7 +283,27 @@
                 </div>
               </div>
             </div>
-
+            <!-- Cantidad de registro por lideres-->
+            <div class="col-lg-6 mb-4">
+                  <div class="card shadow mb-4">
+                      <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Cantidad de registro por lideres</h6>
+                      </div>
+                      <div class="card-body">
+                          @foreach ($total_usu_reg_por_lideres as $lideres)
+                            <h4 class="small font-weight-bold">
+                              <a href="usuarioslider/{{$lideres->id}}">{{ $lideres->lider }} </a><small class="text-secundary"> - {{$lideres->cantidad}} /40  </small>
+                              <span class="float-right"> {{ ($lideres->cantidad *100)/40}}%</span>
+                            </h4>
+                            <div class="progress mb-4">
+                              <div class="progress-bar " role="progressbar" style="width: {{ ($lideres->cantidad *100)/40}}%" aria-valuenow="{{ $lideres->cantidad }}" aria-valuemin="0" aria-valuemax="40"></div>
+                            </div>
+                          @endforeach
+                      
+                      </div>
+                    </div>
+              </div>
+              
           </div>
 
           <!-- Content Row -->
@@ -273,23 +313,7 @@
             <div class="col-lg-6 mb-4">
 
               <!-- Project Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Cantidad de registro por lideres</h6>
-                </div>
-                <div class="card-body">
-                    @foreach ($total_usu_reg_por_lideres as $lideres)
-                      <h4 class="small font-weight-bold">
-                        {{ $lideres->lider }} <small class="text-secundary"> - {{$lideres->cantidad}} /40  </small>
-                        <span class="float-right"> {{ ($lideres->cantidad *100)/40}}%</span>
-                      </h4>
-                      <div class="progress mb-4">
-                        <div class="progress-bar " role="progressbar" style="width: {{ ($lideres->cantidad *100)/40}}%" aria-valuenow="{{ $lideres->cantidad }}" aria-valuemin="0" aria-valuemax="40"></div>
-                      </div>
-                    @endforeach
-                
-                </div>
-              </div>
+             
 
               <!-- Color System -->
               <div class="row">

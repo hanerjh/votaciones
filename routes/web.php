@@ -21,6 +21,10 @@ Route::group(['middleware'=>'checkuser'], function(){
 
     
     Route::get('/dashboard','reporteController@index')->name('dashboard');
+    Route::get('/votosporzonas','reporteController@votos_por_zonas');
+    Route::get('/listadelideres','reporteController@total_lideres');
+    Route::get('/registroweb','reporteController@registro_via_web');
+
     Route::get('/logout','Auth\LoginController@logout')->name('logout');
     //resetear passwor de un usuario 
     Route::get('/form_password','regpersonaController@formchangepass');
@@ -28,7 +32,10 @@ Route::group(['middleware'=>'checkuser'], function(){
     //CAMBIAR MI CONTRASEÑA
     Route::get('/profilechange_password','regpersonaController@formchangeprofilepass');
     Route::post('/change_password','regpersonaController@changeprofilepassword');
-
+    // CONSULTAS EN CONTROLADOR GENERAL
+    Route::get('/usuarioslider/{id}','generalController@lider_usu_register');
+    Route::get('/usuariosdeliderfaltantesporvotar/{id}','generalController@lider_usu_sin_votar');
+    Route::get('/totalvotosfaltantes','generalController@usuarios_sin_votar');
 
 //rutas para alideres
 Route::get('/registrarlider','regliderController@index');
