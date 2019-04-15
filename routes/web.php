@@ -12,7 +12,10 @@
 */
 Route::get('votacion','votacionController@index');
 Route::post('confirmar_votacion','votacionController@eval_votacion')->name('confirmar_votacion');
-
+Route::post('/cambiar_passwordinical','regpersonaController@changepassword');
+Route::get('/recuperarcontrasena',function(){
+    return view('resetpass');
+});
 
 Route::get('inicio','Auth\LoginController@showLoginForm')->name('inicio');
 Route::post('login','Auth\LoginController@login')->name('login');
@@ -24,6 +27,8 @@ Route::group(['middleware'=>'checkuser'], function(){
     Route::get('/votosporzonas','reporteController@votos_por_zonas');
     Route::get('/listadelideres','reporteController@total_lideres');
     Route::get('/registroweb','reporteController@registro_via_web');
+    Route::get('/votosporpuestos','reporteController@votos_por_puestos');
+    Route::get('/votospormesa','reporteController@votos_por_mesa');
 
     Route::get('/logout','Auth\LoginController@logout')->name('logout');
     //resetear passwor de un usuario 

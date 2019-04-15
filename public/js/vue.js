@@ -60,7 +60,8 @@ var appvue= new Vue({
             selectedmunicipio:"",
             selectedpuesto:"",
             departamentos:[],
-            municipios:[],  
+            municipios:[], 
+            municipios2:[],  
             municipiosPersona:[],         
             barrios:[],
             puestovotaciones:[],
@@ -123,7 +124,10 @@ var appvue= new Vue({
             }); */
           
             axios.get('locationm/'+this.itemlist)
-                .then(response => (this.municipios = response.data)).catch(function (error) {
+                .then((response) =>{ 
+                    this.municipios2 = response.data;
+                   
+                }).catch(function (error) {
                     console.log(error);
                   }); 
         },

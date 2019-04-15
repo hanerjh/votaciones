@@ -125,6 +125,35 @@ class reporteController extends Controller
 
     }
 
+    public function votos_por_puestos(){
+        // VOTACIONES POR PUESTOS
+         $voto_por_puesto= DB::table("persona_has_campanna as votacion")
+               ->join('puesto_votacion','idpuesto_votacion','=','votacion.puesto')
+              ->join('zona','idzona','=','puesto_votacion.fk_zona') 
+              ->where('campanna_idcampanna',2)   
+              ->select('nombre_puesto',DB::raw('count(votacion.puesto) as cantidad'))
+              ->groupBy('nombre_puesto')  
+             ->get();
+            //return $voto_por_puesto;
+             return view('dashboard.sbadmin.votos_por_puestos',compact('voto_por_puesto'));
+ 
+     }
+
+     public function votos_por_mesa(){
+        // VOTACIONES POR PUESTOS
+         $voto_por_mesa= DB::table("persona_has_campanna as votacion")
+               ->join('puesto_votacion','idpuesto_votacion','=','votacion.puesto')
+               ->join('mesa','idmesa','=','votacion.mesa')
+               ->join('zona','idzona','=','puesto_votacion.fk_zona') 
+              ->where('campanna_idcampanna',2)   
+              ->select('zona','nombre_puesto','mesa.mesa',DB::raw('count(votacion.mesa) as cantidad'))
+              ->groupBy('zona','nombre_puesto','mesa.mesa')  
+             ->get();
+            //return $voto_por_mesa;
+             return view('dashboard.sbadmin.votos_por_mesa',compact('voto_por_mesa'));
+ 
+     }
+
     public function total_lideres(){
         //ESTA CONSULTA TREA LOS USURIOS REGISTRADOS POR CADA LIDER
         $total_usu_reg_por_lideres=DB::table("persona as lider")

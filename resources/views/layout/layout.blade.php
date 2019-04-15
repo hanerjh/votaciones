@@ -14,23 +14,23 @@
 
   <!-- Custom fonts for this template-->
   <link href={!! url("customstyle/vendor/fontawesome-free/css/all.min.css") !!} rel="stylesheet" type="text/css">
-  <link href={!! url("https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i") !!} rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"  rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href={!! url("customstyle/css/sb-admin-2.min.css") !!} rel="stylesheet">
   <link href={!! url("customstyle/vendor/datatables/dataTables.bootstrap4.min.css") !!} rel="stylesheet">
-  <link href={!! url("https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" ) !!} rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" )  rel="stylesheet">
  
   <!--<link href=" https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">-->
-  <link href={!! url(" https://cdn.datatables.net/buttons/1.5.4/css/buttons.dataTables.min.css") !!} rel="stylesheet">
+  <link href=" https://cdn.datatables.net/buttons/1.5.4/css/buttons.dataTables.min.css" rel="stylesheet">
   
   <style>
      .nav_list{
       overflow-y: auto;
-    height: 300px;
+    height: 170px;
     position: absolute;
     top: 100%;
-    z-index: 9999;
+    z-index: 1;
     width: 100%;
      }
   </style>
@@ -99,8 +99,9 @@
       <div class="bg-white py-2 collapse-inner rounded">           
         <a class="collapse-item" href="/listadelideres">Registro por lideres </a>
         <a class="collapse-item" href="/registroweb">Registro via web</a>
-        <a class="collapse-item" href="utilities-border.html">Puestos por zonas</a>
-        <a class="collapse-item" href="utilities-border.html">Votos por puestos</a>
+        <a class="collapse-item" href="#">Puestos por zonas</a>
+        <a class="collapse-item" href="/votosporpuestos">Votos por puestos</a>
+        <a class="collapse-item" href="/votospormesa">Votos por mesa</a>
         <a class="collapse-item" href="/votosporzonas">Votos por zonas</a>       
         <a class="collapse-item" href="/totalvotosfaltantes">Faltantes por votar</a>
       </div>
@@ -413,26 +414,26 @@
     <script src={!! url("customstyle/vendor/datatables/dataTables.bootstrap4.min.js") !!}></script> 
  
   
-    <script src={!! url(" https://cdn.datatables.net/buttons/1.5.4/js/dataTables.buttons.min.js") !!} type="text/javascript"></script>
-    <script src={!! url(" https://cdn.datatables.net/buttons/1.5.4/js/buttons.flash.min.js") !!} type="text/javascript"></script>
-    <script src={!! url(" https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js") !!} type="text/javascript"></script>
-    <script src={!! url(" https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js") !!} type="text/javascript"></script>
-    <script src={!! url("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js" ) !!} type="text/javascript"></script>
-    <script src={!! url(" https://cdn.datatables.net/buttons/1.5.4/js/buttons.html5.min.js") !!}  type="text/javascript"></script>
-    <script src={!! url(" https://cdn.datatables.net/buttons/1.5.4/js/buttons.print.min.js") !!}  type="text/javascript"></script>
+    <script src=" https://cdn.datatables.net/buttons/1.5.4/js/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src=" https://cdn.datatables.net/buttons/1.5.4/js/buttons.flash.min.js" type="text/javascript"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" type="text/javascript"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"  type="text/javascript"></script>
+    <script src=" https://cdn.datatables.net/buttons/1.5.4/js/buttons.html5.min.js"  type="text/javascript"></script>
+    <script src=" https://cdn.datatables.net/buttons/1.5.4/js/buttons.print.min.js"  type="text/javascript"></script>
 
   
     <!-- Page level custom scripts -->
    
     <script src={!! url("customstyle/js/demo/datatables-demo.js") !!}></script>
     
-    <link href={!! url("//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/css/jqueryui-editable.css") !!} rel="stylesheet"/>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/css/jqueryui-editable.css" rel="stylesheet"/>
 <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jqueryui-editable/js/jqueryui-editable.min.js"></script>
     
    
 
 
-  <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js") !!}></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
   <script src="js/vue.js"></script>
 
      <!-- charts Page level plugins -->

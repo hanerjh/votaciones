@@ -168,7 +168,7 @@ class regpersonaController extends Controller
     public function changepassword(Request $request)
     {
         $validarDatos= $request->validate([
-            'documento'=>'required', 
+            'documento'=>'required|min:5', 
         ]);
         $documento=$request->documento;
         //BUSCAMOS AL USUARIO PARA EXTRAER SU CORREO Y ENVIARLE EL NUEVO PASSWORD
@@ -177,29 +177,62 @@ class regpersonaController extends Controller
         $datos = DB::table('persona')        
         ->where('documento',"=",$documento)
         ->select('correo','nombre','apellido')
-        ->get();      
+        ->first();      
        //dd($datos);
         if(!is_null($datos))
         {
             $pass=str_random(8);
             $hashed_random_password = Hash::make($pass); 
-            $msn=$datos[0]->correo." / ".$pass;
+            $msn=$datos->correo." / ".$pass;
            DB::table('persona')
                 ->where('documento', $documento)
                 ->update(['password' => $hashed_random_password]);
     
-             Mail::to($datos[0]->correo)->send(new MensajeEnviado($msn));
+             Mail::to($datos->correo)->send(new MensajeEnviado($msn));
 
-             return back()->with(['msjpass'=>'Se ha enviado la nueva contraseña al correo:'.$datos[0]->correo]);
+             return back()->with(['msjpass'=>'Se ha enviado la nueva contraseña al correo:'.$datos->correo]);
+        }
+        else{
+           // dd($datos);
+           return back()->withErrors(['mensaje'=>'El documento ingresado no se encuentra registrado']);
+          
+        }
+      
+    }
+
+    //ACTUALIZAR PASSWORD DE USUARIO Y ENVIAR AL CORREO
+    public function changepasswordinicial(Request $request)
+    {
+        $validarDatos= $request->validate([
+            'documento'=>'required|min:5', 
+        ]);
+        $documento=$request->documento;
+        //BUSCAMOS AL USUARIO PARA EXTRAER SU CORREO Y ENVIARLE EL NUEVO PASSWORD
+        $datos="";
+
+        $datos = DB::table('persona')        
+        ->where('documento',"=",$documento)
+        ->select('correo','nombre','apellido')
+        ->first();      
+       //dd($datos);
+        if(!is_null($datos))
+        {
+            $pass=str_random(8);
+            $hashed_random_password = Hash::make($pass); 
+            $msn=$datos->correo." / ".$pass;
+           DB::table('persona')
+                ->where('documento', $documento)
+                ->update(['password' => $hashed_random_password]);
+    
+             Mail::to($datos->correo)->send(new MensajeEnviado($msn));
+
+             return back()->with(['msjpass'=>'Se ha enviado la nueva contraseña al correo:'.$datos->correo]);
         }
         else{
            // dd($datos);
            return back()->withErrors(['mensaje'=>'EL NUMERO DE DOCUMENTO NO SE ENCUENTRA EN NUESTROS REGISTROS']);
           
         }
-       
-       
-
       
     }
 
@@ -224,7 +257,7 @@ class regpersonaController extends Controller
     
              Mail::to("micorreo@g.com")->send(new MensajeEnviado($msn));
 
-             //return back()->with(['m'=>'Se ha enviado la nueva contraseña a'.$datos[0]->nombre." ".$datos[0]->apellido]);
+             return back()->with(['msj'=>'Se ha actualizado tu contraseña']);
        
        
 

@@ -155,14 +155,14 @@
       <label for="inputState">*Municipio</label>
       <select id="inputState"  name="municipio_votacion" class="form-control" v-on:Change="cargarPuestosVotacion($event)" v-model="selectedmunicipio">
         <option selected>Seleccione...</option>
-      <option v-for="muni in municipios" :value="muni.codmunicipio">@{{muni.municipio}}</option>         
+      <option v-for="muni in municipios2" :value="muni.codmunicipio">@{{muni.municipio}}</option>         
            
       </select>
       @if($errors->has('municipio_votacion'))         
       <small class="text-danger">{{$errors->first('municipio_votacion')}}</small>  
     @endif
     </div>
-
+   
 
     <div class="form-group col-md-6">
         <label for="inputState">*Puesto de Votación</label>
@@ -222,5 +222,5 @@
     @endif
   </div>
 
-dd($municipiosPersona);
+
 @endsection

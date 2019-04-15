@@ -39,35 +39,30 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Bienvenido, Iniciar session</h1>
                   </div>
-   <div id="login">
-      <form class="user" name="" method="POST" action="{{ route('login')}}">
-          {{ csrf_field() }}
-         <div class="form-group {{$errors->has('email') ? 'was-invalid':''}}">
-            <input type="email" name="email" class="form-control " {{old('email')}} id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingresar email">
-            {!! $errors->first('email','<small>:message</small>')!!}
-          </div>
-          <div class="form-group {{$errors->has('pass') ? 'was-invalidated':''}}">                    
-            <input type="password" name="pass" class="form-control " id="exampleInputPassword" placeholder="Contraseña">
-            {!! $errors->first('pass','<small>:message</small>')!!}
-          </div>
-         <!-- <div class="form-group">
-            <div class="custom-control custom-checkbox small">
-              <input type="checkbox" class="custom-control-input" id="customCheck">
-              <label class="custom-control-label" for="customCheck">Remember Me</label>
-            </div>
-          </div>-->
-          <input type="submit" class="btn btn-primary btn-block" value="Ingresar">
-          <a class="small btn btn-secondary btn-block" id="olvido" href="/recuperarcontrasena">Olvide la contraseña</a>
-          <br>
-          <div class="text-center">
-              {!! $errors->first('mensaje','<small class="text-danger">:message</small>')!!}
-            </div>
-          <hr>  
-        </form>
-   </div>
-
- 
-                  
+  
+                          <div id="recuperar_pass">
+                              <p>Para restablecer la contraseña de un usuario, por favor ingresar su número de documento y le será enviado al correo la nueva contraseña</p>
+                              <form class="user" name="" method="POST" action="/cambiar_passwordinical">
+                                    @csrf  
+                                  <div class="form-group {{$errors->has('pass') ? 'was-invalidated':''}}">                    
+                                    <input type="text" id="documento" name="documento" class="form-control "  placeholder="Ingresar documento">
+                                    {!! $errors->first('documento','<small class="text-danger">:message</small>')!!}
+                                  </div>
+                                  <input type="submit" id="pass" class="btn btn-primary btn-block" value="Restrablecer contraseña">
+                                  <a class="small btn btn-success btn-block" id="olvido" href="/inicio">Iniciar session</a>
+                                  <br>
+                                  <div class="text-center">
+                                      @if(session()->has('msjpass'))
+                                        <div class="alert alert-primary" role="alert">
+                                        {{ session('msjpass') }}
+                                        </div>
+                                        @endif
+                                      {!! $errors->first('mensaje','<small class="text-danger">:message</small>')!!}
+                                    </div>
+                                  <hr>  
+                                </form>
+                            </div>
+                                          
                  
                 </div>
               </div>
