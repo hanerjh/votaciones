@@ -11,7 +11,8 @@ class puestoVotacionController extends Controller
     public function index()
     {
        
-        $regiones = DB::table('regiones')->where('estado',true)->get();       
+        $regiones = DB::table('regiones')->where('estado',true)->get();    
+          
         return view('dashboard/sbadmin/reglugarvotacion',compact('regiones'));
     }
 
@@ -27,14 +28,22 @@ class puestoVotacionController extends Controller
         //$name=$request->all();
          //dd($name);
        
+         $validarDatos= $request->validate([
+            'lugarvotacion'=>'required|min:3',
+            'direccion'=>'required|min:5',
+            'municipio'=>'required', 
+            'zona'=>'required',
+            'comuna'=>'required',
+           
+        ]);
 
        DB::table('puesto_votacion')->insert(
-            ['nombre' => $request->lugarvotacion, 'direccion' => $request->direccion, 
+            ['nombre_puesto' => $request->lugarvotacion, 'direccion' => $request->direccion, 
             'barrio_idbarrio' =>   $request->barrio , 'municipio_codmunicipio' =>  $request->municipio,
-            'comuna_idcomuna' =>  $request->comuna
+            'comuna_idcomuna' =>  $request->comuna,'fk_zona' =>  $request->zona
             ]
         );
 
-        return "INFORMACION ALMACENADA";
+        return back()->with('msj','El puesto de votación fue registrado corectamente');
     }
 }

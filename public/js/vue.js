@@ -66,6 +66,8 @@ var appvue= new Vue({
             barrios:[],
             puestovotaciones:[],
             comunas:[],
+            zonas:[],
+            munizona:"",
             mesas:[],
             lista:[]             
         }
@@ -146,28 +148,43 @@ var appvue= new Vue({
         },
         cargarMunicipioPersona: function(event){
             console.log("llego"+ event.target.value);     
-                      
+                 
             axios.get('locationmpersona/'+event.target.value)
             .then((response)=>{
-                this.municipiosPersona = response.data               
+                this.municipiosPersona = response.data   
+                        
             }).catch(function (error) {
                 console.log(error);
                 
               }); 
               
-        },
+        },    
         cargarcomunasPersona: function(event){
-            console.log("llego"+ event.target.value);
-                      
+         
+            this.munizona=event.target.value;   
             axios.get('locationcomunapersona/'+event.target.value)
             .then((response) => {
                 this.lista = response.data
+                 //LLAMAMOS LAS ZONAS QUE PERTENECE AL MUNICIPIO SELECCIONADO
+                 this.zona(); 
                 console.log(this.lista);
             }).catch(function (error) {
                 console.log(error);
                 
               }); 
               
+        },
+        zona:function(){
+           
+            axios.get('/locationz/'+this.munizona)
+            .then((response)=>{
+                this.zonas = response.data  
+                console.log(this.zonas);                       
+            }).catch(function (error) {
+                console.log(error);
+                
+              });
+           
         },
         cargarBarrios: function(event){
             axios.get('locationbarrio/'+event.target.value)

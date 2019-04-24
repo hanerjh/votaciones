@@ -27,6 +27,18 @@ class LocationController extends Controller
        return $datosdepratamentos;
     }
 
+    public function zonas($id)
+    {
+        $zonas = DB::table('zona')->leftJoin('municipio', 
+        'municipio.codmunicipio', '=', 'zona.fk_codmunicipio')
+        ->where('zona.fk_codmunicipio',"=",$id)
+        ->select('zona', 'idzona')
+        ->orderBy('zona','asc')
+        ->get();
+
+       return $zonas;
+    }
+
     /**
      * Display the specified resource.
      *

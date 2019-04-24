@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MensajeEnviado;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 
 class regpersonaController extends Controller
 {
@@ -262,6 +263,54 @@ class regpersonaController extends Controller
        
 
       
+    }
+
+    public function registro_user_from_website(Request $request)
+    {
+        $validarDatos= $request->validate([
+            'documento'=>'required|min:5|max:22',
+            'nombre'=>'required|string|min:2',
+            'apellido'=>'required|string|min:2',        
+            'email'=>'required|email',      
+            'telefono'=>'required',
+            
+        ]);
+        $dato=DB::table('persona')->where('documento','=', $request->documento)->count();
+       //CREAMOS LA CONTRASEÑA Y LA HASHEAMOS
+        $pass=str_random(8);
+        $hashed_random_password = Hash::make($pass);
+
+           if($dato>0){
+
+                return back()->withErrors(['msj'=>'Existe un registro vinculado al numero de documento ingresado']);
+            }
+            else{
+                    try{
+
+                    
+                    DB::table('persona')->insert(
+                        ['documento' => $request->documento, 'nombre' => $request->nombre, 
+                        'apellido' =>   $request->apellido ,'correo' => $request->email, 'telefono' => $request->telefono,
+                        'direccion' => $request->direccion,'password' => $hashed_random_password
+                        ]);
+
+                        $msn=$request->email." / ".$pass;
+                        Mail::to($request->email)->send(new MensajeEnviado($msn));
+
+                        return back()->with(['msg'=>'Gracias por registrarte. Se ha enviado a tu correo <b>'. $request->email.'</b> la clave de acceso al sistemas']);
+                    } 
+                    catch(QueryException $ex){ 
+                        //VERIFICAMOS QUE EL CORREO INGRESADO NO ESTE EN EL SISTEMA
+                        if($ex->errorInfo[1]==1062){
+
+                            return back()->withErrors(['msj'=>'El correo '. $request->email.'ya se encuentra registrado. Por favor ingrese un correo nuevo o contactenos al 2425254, o escribanos al correo <b>soporte@amigosdehardany.com</b> si tiene alguna inquietud']);
+
+                        } 
+                        // Note any method of class PDOException can be called on $ex.
+                      }   
+            
+                    }
+        
     }
 
 

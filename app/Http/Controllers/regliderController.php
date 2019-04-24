@@ -23,8 +23,8 @@ class regliderController extends Controller
 
         $personas = DB::table('persona')
         ->join('tipousuario','idtipousuario','=','persona.fktipousuario')    
-        ->join('mesa','idmesa','=','persona.fk_mesa')
-        ->join('puesto_votacion','idpuesto_votacion','=','mesa.puesto_mesa')  
+        ->leftJoin('mesa','idmesa','=','persona.fk_mesa')
+        ->leftJoin('puesto_votacion','idpuesto_votacion','=','mesa.puesto_mesa')  
         ->get();     
 
         $tpusuario=DB::table('tipousuario')->get();

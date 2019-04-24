@@ -13,8 +13,13 @@
 Route::get('votacion','votacionController@index');
 Route::post('confirmar_votacion','votacionController@eval_votacion')->name('confirmar_votacion');
 Route::post('/cambiar_passwordinical','regpersonaController@changepassword');
+Route::post('/registro','regpersonaController@registro_user_from_website')->name('registro');
 Route::get('/recuperarcontrasena',function(){
     return view('resetpass');
+});
+
+Route::get('/registro',function(){
+    return view('registro');
 });
 
 Route::get('inicio','Auth\LoginController@showLoginForm')->name('inicio');
@@ -56,6 +61,7 @@ Route::resource('/ingresar','regpersonaController');
 
 Route::get('/locationm/{id}','locationController@municipios');
 Route::get('/locationd/{id}','locationController@departamentos');
+Route::get('/locationz/{id}','locationController@zonas');
 Route::get('/locationpv/{id}','locationController@puestovotaciones');
 Route::get('/locationpuestos_votacion_generales/{id}','locationController@puestovotacionesgeneral');
 Route::get('/locationmesas/{id}','locationController@mesas');
