@@ -169,7 +169,8 @@ class reporteController extends Controller
     public function registro_via_web(){
          //ESTA CONSULTA TREA LOS USURIOS REGISTRADOS POR EL SITIO WEB
          $registroweb=DB::table("persona as usuario")
-         ->where('usuario.idpersonalider','=',null)                                             
+         ->where('usuario.idpersonalider','=',null) 
+         ->orWhere('via_registro', 0)                                            
          ->select('usuario.idpersona as id','usuario.nombre','usuario.apellido','usuario.telefono')
          ->groupBy('usuario.nombre','usuario.idpersona','usuario.apellido','usuario.telefono')
          ->orderBy('usuario.nombre','desc')

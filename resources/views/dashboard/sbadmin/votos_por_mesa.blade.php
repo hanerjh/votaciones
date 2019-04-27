@@ -2,7 +2,9 @@
 @section('titulo','VOTOS POR MESAS')
 @section('content')
 <div class="col-md-9">
-   
+  @php
+  $cantidad=0;
+@endphp
    
     <p>Listado de votación por mesas </p>
         <table class="table table-striped">
@@ -22,10 +24,16 @@
                             <td>{{$mesa->zona}}</td>
                             <td>{{$mesa->nombre_puesto}}</td> 
                             <td>{{$mesa->mesa}}</td>
-                            <td>{{$mesa->cantidad}}</td>                           
+                            <td>{{$mesa->cantidad}}</td>  
+                            @php
+                            $cantidad+=$mesa->cantidad;
+                          @endphp                           
                           </tr>
                     @endforeach
-                  
+                    <tr>
+                      <td colspan="4"><b>TOTAL DE VOTOS CONFIRMADOS POR MESAS</b></td>
+                      <td> <b>{{$cantidad}}</b></td>
+                    </tr>
                   
                 </tbody>
               </table>

@@ -83,8 +83,9 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">          
-            <a class="collapse-item" href="/ingresar">Registrar Usuario</a>
+            <a class="collapse-item" href="/usuario">Registrar Usuario</a>
             <a class="collapse-item" href="/registrarlider">Ver Usuario</a>
+         
             <a class="collapse-item" href="/form_password">Cambiar contraseña</a>
             <a class="collapse-item" href="/registrarpuestovotacion">Reg. Lugar de votacion</a>    
             <a class="collapse-item" href="/registrarmesa">Registrar Mesa</a>        
@@ -120,7 +121,7 @@
             <a class="collapse-item" href="utilities-color.html">Barrios</a>
             <a class="collapse-item" href="utilities-border.html">Comunas</a>
             <a class="collapse-item" href="utilities-animation.html">Municipios</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
+            <a class="collapse-item" href="utilities-other.html">Zonas</a>
           </div>
         </div>
       </li>
@@ -436,7 +437,7 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
-  <script src="js/vue.js"></script>
+  <script src={{ url("js/vue.js")}}></script>
 
      <!-- charts Page level plugins -->
      <script src={!! url("customstyle/vendor/chart.js/Chart.min.js") !!}></script>

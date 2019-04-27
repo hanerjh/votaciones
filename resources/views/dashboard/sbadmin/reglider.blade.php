@@ -37,6 +37,7 @@ $lista="[";
             <th>Tipo Usuario</th>
             <th>Puesto votacion</th>
             <th>Mesa</th>
+            <th>editar</th>
           </tr>
         </thead>
         <tfoot>
@@ -50,6 +51,7 @@ $lista="[";
             <th>Tipo Usuario</th>
             <th>Puesto votacion</th>
             <th>Mesa</th>
+            <th>editar</th>
           </tr>
         </tfoot>
         <tbody>
@@ -68,6 +70,7 @@ $lista="[";
               <td  class="itemselect" data-name="fktipousuario" data-type="select" data-pk="{{$persona->idpersona}}" data-source="{{$lista}}" data-value="{{$persona->fktipousuario}}" >{{$persona->tipousuario}}</td>
               <td>{{$persona->nombre_puesto}}</td>
               <td>{{$persona->mesa}}</td>
+              <td><a class="btn btn-small btn-info" href="/usuario/{{$persona->idpersona }}/edit">Edit</a></td>
             </tr>
                 
             @endforeach

@@ -33,7 +33,7 @@ class regpersonaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -113,7 +113,18 @@ class regpersonaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $regiones = DB::table('regiones')->where('estado',true)->get();
+        $departamentos = DB::table('departamentos')->get();
+        $municipios = DB::table('municipio')->get(); 
+        $usuario= DB::table('persona')
+                        ->leftJoin('municipio','codmunicipio','persona.municipio')
+                        ->leftJoin('barrio','idbarrio','persona.barrio')
+                        ->leftJoin('comuna','idcomuna','persona.comuna')
+                        ->leftJoin('puesto_votacion','idpuesto_votacion','persona.fkpuesto_votacion')
+                        ->leftJoin('mesa','idmesa','persona.fk_mesa')
+                        ->where('idpersona',$id)
+                        ->first(); 
+        return view('dashboard.sbadmin.actualizarusuario',compact('regiones','departamentos','municipios','usuario'));
     }
 
     /**
@@ -125,7 +136,20 @@ class regpersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id_session_user=$request->session()->get('iduser');
+      
+          DB::table('persona')
+            ->where('idpersona', $id)
+            ->update( ['documento' => $request->documento, 'nombre' => $request->nombre, 
+                'apellido' =>   $request->apellido , 'fechaNacimiento' =>  $request->fechaNacimiento,
+                'sexo' =>  $request->genero , 'correo' => $request->email, 'telefono' => $request->telefono,
+                'comuna' =>   $request->comuna, 'barrio' => $request->barrio,
+                'direccion' => $request->direccion, 'fkpuesto_votacion' => $request->puesto, 'fk_mesa' => $request->mesa,
+                'municipio' =>$request->municipio,'idpersonalider'=>$id_session_user,'fktipousuario'=>$request->tpusuario
+                ]);
+
+                return back()->with('msj','El usuario fue actualizado correctamente');
+
     }
 
     /**
@@ -275,6 +299,7 @@ class regpersonaController extends Controller
             'telefono'=>'required',
             
         ]);
+        //CONSULTAMOS QUE EL USUARIO NO ESTE REGISTRADO
         $dato=DB::table('persona')->where('documento','=', $request->documento)->count();
        //CREAMOS LA CONTRASEÑA Y LA HASHEAMOS
         $pass=str_random(8);
@@ -291,7 +316,7 @@ class regpersonaController extends Controller
                     DB::table('persona')->insert(
                         ['documento' => $request->documento, 'nombre' => $request->nombre, 
                         'apellido' =>   $request->apellido ,'correo' => $request->email, 'telefono' => $request->telefono,
-                        'direccion' => $request->direccion,'password' => $hashed_random_password
+                        'direccion' => $request->direccion,'password' => $hashed_random_password,'via_registro'=>0
                         ]);
 
                         $msn=$request->email." / ".$pass;

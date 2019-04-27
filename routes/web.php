@@ -57,7 +57,9 @@ Route::post('/registrarpuestovotacion','puestoVotacionController@registrar');
 Route::get('/registrarmesa','mesaVotacionController@index');
 Route::post('/registrarmesa','mesaVotacionController@registrar');
 
-Route::resource('/ingresar','regpersonaController');
+Route::resource('/usuario','regpersonaController');
+//Route::resource('/editarusuario','regpersonaController');
+//Route::resource('/actualizarusuarioedit','regpersonaController');
 
 Route::get('/locationm/{id}','locationController@municipios');
 Route::get('/locationd/{id}','locationController@departamentos');

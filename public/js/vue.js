@@ -88,7 +88,7 @@ var appvue= new Vue({
                 this.mensajes="Por favor ingresar su documento"
             }
             else{
-                axios.get('evaluardocumento/'+this.documento)
+                axios.get('/evaluardocumento/'+this.documento)
                 .then((response) =>{
                    
                     //console.log(response.data);
@@ -125,7 +125,7 @@ var appvue= new Vue({
               console.log(error);
             }); */
           
-            axios.get('locationm/'+this.itemlist)
+            axios.get('/locationm/'+this.itemlist)
                 .then((response) =>{ 
                     this.municipios2 = response.data;
                    
@@ -139,7 +139,7 @@ var appvue= new Vue({
             this.puestovotaciones="";
            
               this.municipios=null;           
-            axios.get('locationd/'+this.selectedregion)
+            axios.get('/locationd/'+this.selectedregion)
             .then(response => (this.departamentos = response.data)).catch(function (error) {
                 console.log(error);
                 
@@ -149,7 +149,7 @@ var appvue= new Vue({
         cargarMunicipioPersona: function(event){
             console.log("llego"+ event.target.value);     
                  
-            axios.get('locationmpersona/'+event.target.value)
+            axios.get('/locationmpersona/'+event.target.value)
             .then((response)=>{
                 this.municipiosPersona = response.data   
                         
@@ -162,7 +162,7 @@ var appvue= new Vue({
         cargarcomunasPersona: function(event){
          
             this.munizona=event.target.value;   
-            axios.get('locationcomunapersona/'+event.target.value)
+            axios.get('/locationcomunapersona/'+event.target.value)
             .then((response) => {
                 this.lista = response.data
                  //LLAMAMOS LAS ZONAS QUE PERTENECE AL MUNICIPIO SELECCIONADO
@@ -187,26 +187,26 @@ var appvue= new Vue({
            
         },
         cargarBarrios: function(event){
-            axios.get('locationbarrio/'+event.target.value)
+            axios.get('/locationbarrio/'+event.target.value)
             .then(response => (this.barrios = response.data)).catch(function(error){
                 console.log(error);
             });
         },
         cargarPuestosVotacion: function(){
           //carga los puestos de votaciones que tienen mesas asignadas
-            axios.get('locationpv/'+this.selectedmunicipio)
+            axios.get('/locationpv/'+this.selectedmunicipio)
                   .then(response => (this.puestovotaciones = response.data)).catch(function(error){
                       console.log(error);
                   });
         },cargarPuestosVotaciongeneral: function(){
          //carga los puestos de votaciones completos
-            axios.get('locationpuestos_votacion_generales/'+event.target.value)
+            axios.get('/locationpuestos_votacion_generales/'+event.target.value)
                   .then(response => (this.puestovotaciones = response.data)).catch(function(error){
                       console.log(error);
                   });
         },
         cargarmesas: function(){
-            axios.get('locationmesas/'+this.selectedpuesto)
+            axios.get('/locationmesas/'+this.selectedpuesto)
                   .then(response => (this.mesas = response.data)).catch(function(error){
                       console.log(error);
                   });
