@@ -208,7 +208,7 @@ class LocationController extends Controller
         'mesa.puesto_mesa', '=', 'puesto_votacion.idpuesto_votacion')
         ->where('mesa.puesto_mesa',"=",$id)
         ->select('idmesa', 'mesa')
-        ->orderBy('mesa','asc')        
+        ->orderBy('idmesa','asc')        
         ->get();
        return $mesas;
     }

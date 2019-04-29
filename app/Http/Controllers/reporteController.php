@@ -102,13 +102,26 @@ class reporteController extends Controller
                             });
             })                                                 
         ->count();
-        
+        //ARREGLAR EL 2 DE LA CAMPAÑA
+        $voto_por_zonas= DB::table("persona_has_campanna as votacion")
+        ->join('puesto_votacion','idpuesto_votacion','=','votacion.puesto')
+        ->Join('zona','idzona','=','puesto_votacion.fk_zona') 
+       ->where('campanna_idcampanna','=',function($query){
+        $query->select('idcampanna')
+        ->from('campanna')
+        ->orderBy('idcampanna','desc')
+          ->limit(1)       
+          ->get();
 
+        })   
+       ->select('zona',DB::raw('count(votacion.puesto) as cantidad'))
+       ->groupBy('zona')  
+      ->get();
 
 //dd( $votos_faltantes);
         //return $cant_usu_reg_lider;
         //return view('dashboard.sbadmin.dash');
-        return view('dashboard.sbadmin.dash',compact('regiones','departamentos','municipios','cant_usu_registrado','cant_lider_registrado','cant_usu_reg_lider','total_usu_reg_por_lideres','total_puestos_zonas','total_votos','total_votos_usu_lider','faltantes_votos', 'total_votos_faltantes'));
+        return view('dashboard.sbadmin.dash',compact('voto_por_zonas','regiones','departamentos','municipios','cant_usu_registrado','cant_lider_registrado','cant_usu_reg_lider','total_usu_reg_por_lideres','total_puestos_zonas','total_votos','total_votos_usu_lider','faltantes_votos', 'total_votos_faltantes'));
     }
 
     public function votos_por_zonas(){
@@ -145,7 +158,14 @@ class reporteController extends Controller
                ->join('puesto_votacion','idpuesto_votacion','=','votacion.puesto')
                ->join('mesa','idmesa','=','votacion.mesa')
                ->join('zona','idzona','=','puesto_votacion.fk_zona') 
-              ->where('campanna_idcampanna',2)   
+              ->where('campanna_idcampanna','=',function($query){
+                $query->select('idcampanna')
+                ->from('campanna')
+                ->orderBy('idcampanna','desc')
+                  ->limit(1)       
+                  ->get();
+
+                })   
               ->select('zona','nombre_puesto','mesa.mesa',DB::raw('count(votacion.mesa) as cantidad'))
               ->groupBy('zona','nombre_puesto','mesa.mesa')  
              ->get();
