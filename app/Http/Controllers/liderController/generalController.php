@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\liderController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,12 +18,9 @@ class generalController extends Controller
         ->select('lider.nombre as lider','usuario.nombre','usuario.apellido','usuario.telefono','puesto.nombre_puesto','mesa.mesa')
         ->get();
 
-        if(session()->get('tipousu')===2){
-        return view('dashboard.adminlider.usuarioreglider',compact('usu_reg_by_lider'));
-        }
-        elseif(session()->get('tipousu')===3){
-            return view('dashboard.sbadmin.usuarioreglider',compact('usu_reg_by_lider'));
-            }
+      
+        return view('dashboard.lider.usuarioreglider',compact('usu_reg_by_lider'));
+        
     
 
        
@@ -47,7 +44,7 @@ class generalController extends Controller
             })                                     
         ->select('lider.nombre as lider','usuario.nombre','usuario.apellido','usuario.telefono','puesto.nombre_puesto','mesa.mesa')
         ->get();  
-        return view('dashboard.sbadmin.usuarioreglider',compact('usu_reg_by_lider'));
+        return view('dashboard.lider.usuarioreglider',compact('usu_reg_by_lider'));
     }
     //TODOS LOS USUARIOS QUE NO HAN VOTADO AUN
     public function usuarios_sin_votar(){
@@ -69,6 +66,6 @@ class generalController extends Controller
             })                                     
         ->select('lider.nombre as lider','lider.apellido as apellidolider','usuario.nombre','usuario.apellido','usuario.telefono','puesto.nombre_puesto','mesa.mesa')
         ->get();
-        return view('dashboard.sbadmin.totalvotosfaltantes',compact('usu_reg_by_lider'));
+        return view('dashboard.lider.totalvotosfaltantes',compact('usu_reg_by_lider'));
     }
 }

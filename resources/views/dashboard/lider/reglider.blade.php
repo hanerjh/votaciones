@@ -1,9 +1,11 @@
-@extends('../../layout.layout')
-@section('titulo','ASIGNAR ROLES')
+@extends('../../layout.layoutlider')
+@section('titulo','Mis usuarios registrados')
 @section('content')
 <div class="col-12">
-<h1 class="h3 mb-2 text-gray-800">Tables</h1>
-<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+<h1 class="h3 mb-2 text-gray-800">Listado de Tú y tus 40</h1>
+<p class="mb-4">
+  En esta seccion puede ver los usuarios que has registrado. ademas, puede actualizar algunos datos en el registro de los usuarios.
+</p>
 @php
 $lista="[";    
 @endphp
@@ -17,11 +19,11 @@ $lista="[";
 @php
     $lista=$lista."]";  
 @endphp
-{{$lista}}
+
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Listado de usuarios</h6>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -70,7 +72,7 @@ $lista="[";
               <td  class="itemselect" data-name="fktipousuario" data-type="select" data-pk="{{$persona->idpersona}}" data-source="{{$lista}}" data-value="{{$persona->fktipousuario}}" >{{$persona->tipousuario}}</td>
               <td>{{$persona->nombre_puesto}}</td>
               <td>{{$persona->mesa}}</td>
-              <td><a class="btn btn-small btn-info" href="/usuario/{{$persona->idpersona }}/edit">Edit</a></td>
+              <td><a class="btn btn-small btn-info" href="/l_usuario/{{$persona->idpersona }}/edit">Edit</a></td>
             </tr>
                 
             @endforeach

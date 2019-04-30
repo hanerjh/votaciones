@@ -67,11 +67,12 @@ class LoginController extends Controller
 
         $usuario= DB::table('persona')
         ->where('correo',$credentials['email'])        
-        ->select('idpersona','nombre','apellido','password')
+        ->select('idpersona','nombre','apellido','password','fktipousuario')
         ->first();
      // dd($usuario);
        if($usuario){
              $id= $usuario->idpersona;
+             $tpusu=$usuario->fktipousuario;
              $nombre= $usuario->nombre;
              $hashedPassword= $usuario->password;
              //dd($hashedPassword);
@@ -80,7 +81,15 @@ class LoginController extends Controller
                    // Auth::login($id);
                    $request->session()->put('iduser',$id);
                    $request->session()->put('user',$nombre);
+                   $request->session()->put('tipousu',$tpusu);
+                  
+                   if($tpusu==2){ //LIDERES
+                    return redirect()->route('dashboardlider');
+                   }
+                   else if($tpusu==3){ // ADMINISTRADORES
                     return redirect()->route('dashboard');
+                   }
+                 
                     //return view('dashboard.sbadmin.dash');
                     //$usuario->nombre;
                 }

@@ -1,24 +1,24 @@
-@extends('../../layout.layout')
+@extends('../../layout.layoutlider')
 @section('titulo','VOTOS POR ZONAS')
 @section('content')
 <div class="col-md-9">
    
    
-    <p>Listado de usuarios regitrados por la paginas web </p>
+    <p>LISTADO DE LIDERES  </p>
         <table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Telefono</th>                   
+                    <th scope="col">Lider</th>
+                    <th scope="col">Cantidad de usuarios regitrados</th>                   
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($registroweb as $usuario)
+                    @foreach ($total_usu_reg_por_lideres as $lideres)
                         <tr>
                             <th scope="row">{{$loop->index+1}}</th>
-                            <td> {{ $usuario->nombre }} {{ $usuario->apellido }}</td>
-                            <td>{{$usuario->telefono}}</td>                            
+                            <td> {{ $lideres->lider }} </td>
+                            <td><a href="usuarioslider/{{$lideres->id}}">{{$lideres->cantidad}}</a></td>                            
                           </tr>
                     @endforeach
                   

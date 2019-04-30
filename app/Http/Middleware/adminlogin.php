@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class checkuser
+class adminlogin
 {
     /**
      * Handle an incoming request.
@@ -15,13 +15,10 @@ class checkuser
      */
     public function handle($request, Closure $next)
     {
-       /* if($request->session()->get('iduser')===null){
-            return redirect('inicio');
-        }*/
-        if($request->session()->get('tipousu')===2){
+        if($request->session()->get('tipousu')===3){
             return $next($request);
         }
         return redirect('inicio');
-       
+     
     }
 }

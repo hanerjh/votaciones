@@ -1,4 +1,4 @@
-@extends('../../layout.layout')
+@extends('../../layout.layoutlider')
 @section('titulo','REGISTRO DE USUARIOS POR LIDER')
 @section('content')
 <div class="col-md-9">

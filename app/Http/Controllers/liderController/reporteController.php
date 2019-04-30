@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\liderController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -121,17 +121,13 @@ class reporteController extends Controller
 
 //dd( $votos_faltantes);
         //return $cant_usu_reg_lider;
-        //return view('dashboard.sbadmin.dash');
-        if(session()->get('tipousu')===2){
+        //return view('dashboard.lider.dash');
+        
 
-            return view('dashboard.adminlider.dash',compact('voto_por_zonas','regiones','departamentos','municipios','cant_usu_registrado','cant_lider_registrado','cant_usu_reg_lider','total_usu_reg_por_lideres','total_puestos_zonas','total_votos','total_votos_usu_lider','faltantes_votos', 'total_votos_faltantes'));
+            return view('dashboard.lider.dash',compact('voto_por_zonas','regiones','departamentos','municipios','cant_usu_registrado','cant_lider_registrado','cant_usu_reg_lider','total_usu_reg_por_lideres','total_puestos_zonas','total_votos','total_votos_usu_lider','faltantes_votos', 'total_votos_faltantes'));
 
-        }
-        if(session()->get('tipousu')===3){
-
-            return view('dashboard.sbadmin.dash',compact('voto_por_zonas','regiones','departamentos','municipios','cant_usu_registrado','cant_lider_registrado','cant_usu_reg_lider','total_usu_reg_por_lideres','total_puestos_zonas','total_votos','total_votos_usu_lider','faltantes_votos', 'total_votos_faltantes'));
-
-        }
+        
+      
 
     }
 
@@ -145,12 +141,9 @@ class reporteController extends Controller
              ->groupBy('zona')  
             ->get();
 
-            if(session()->get('tipousu')===2){
-                     return view('dashboard.adminlider.votosporzonas',compact('voto_por_zonas'));
-            }
-            if(session()->get('tipousu')===3){
-                    return view('dashboard.sbadmin.votosporzonas',compact('voto_por_zonas'));
-            }
+           
+                    return view('dashboard.lider.votosporzonas',compact('voto_por_zonas'));
+          
 
     }
 
@@ -165,12 +158,9 @@ class reporteController extends Controller
              ->get();
             //return $voto_por_puesto;
 
-            if(session()->get('tipousu')===2){
-                return view('dashboard.sbadmin.votos_por_puestos',compact('voto_por_puesto'));
-            }
-            if(session()->get('tipousu')===3){
-             return view('dashboard.sbadmin.votos_por_puestos',compact('voto_por_puesto'));
-         }
+            
+             return view('dashboard.lider.votos_por_puestos',compact('voto_por_puesto'));
+         
             
  
      }
@@ -194,12 +184,9 @@ class reporteController extends Controller
              ->get();
             //return $voto_por_mesa;
 
-            if(session()->get('tipousu')===2){
-                return view('dashboard.sbadmin.votos_por_mesa',compact('voto_por_mesa'));
-            }
-            if(session()->get('tipousu')===3){
-                return view('dashboard.sbadmin.votos_por_mesa',compact('voto_por_mesa'));
-         }
+            
+                return view('dashboard.lider.votos_por_mesa',compact('voto_por_mesa'));
+         
             
           
  
@@ -215,7 +202,7 @@ class reporteController extends Controller
                         ->orderBy('cantidad','desc')
                         ->get();
 
-                        return view('dashboard.sbadmin.lideres',compact('total_usu_reg_por_lideres'));
+                        return view('dashboard.lider.lideres',compact('total_usu_reg_por_lideres'));
     }
     public function registro_via_web(){
          //ESTA CONSULTA TREA LOS USURIOS REGISTRADOS POR EL SITIO WEB
@@ -227,7 +214,7 @@ class reporteController extends Controller
          ->orderBy('usuario.nombre','desc')
          ->get();
         
-         return view('dashboard.sbadmin.registroviaweb',compact('registroweb'));
+         return view('dashboard.lider.registroviaweb',compact('registroweb'));
     }
 
 }

@@ -1,9 +1,9 @@
-@extends('../../../layout.layout')
+@extends('../../../layout.layoutlider')
 @section('titulo','RESTABLECER CONTRASEÑA')
 @section('content')
 <div class="col-6">
 <p>Para restablecer la contraseña de un usuario, por favor ingresar su número de documento y le será enviado al correo la nueva contraseña</p>
-<form class="form-inline" action="cambiar_password/" method="POST"> 
+<form class="form-inline" action="l_cambiar_password/" method="POST"> 
     @csrf  
     <div class="form-group mx-sm-6 mb-2">      
       <input type="text" name="documento" class="form-control" id="inputPassword2" placeholder="Ingresar Documento">

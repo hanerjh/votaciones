@@ -1,4 +1,4 @@
-@extends('../../layout.layout')
+@extends('../../layout.layoutlider')
 @section('titulo','REGISTRAR LUGAR DE VOTACIÓN')
 @section('content')
 

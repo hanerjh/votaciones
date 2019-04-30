@@ -1,15 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 Route::get('votacion','votacionController@index');
 Route::post('confirmar_votacion','votacionController@eval_votacion')->name('confirmar_votacion');
 Route::post('/cambiar_passwordinical','regpersonaController@changepassword');
@@ -25,8 +16,66 @@ Route::get('/registro',function(){
 Route::get('inicio','Auth\LoginController@showLoginForm')->name('inicio');
 Route::post('login','Auth\LoginController@login')->name('login');
 
-Route::group(['middleware'=>'checkuser'], function(){  
 
+// MIDDLEWARE QUE SOLO EVALUA SI HAY LOGIN Y COMPARTE LOS ENLACES ------------------------------------------------
+Route::group(['middleware'=>'logincheck'], function(){ 
+    Route::get('/locationm/{id}','locationController@municipios');
+    Route::get('/locationd/{id}','locationController@departamentos');
+    Route::get('/locationz/{id}','locationController@zonas');
+    Route::get('/locationpv/{id}','locationController@puestovotaciones');
+    Route::get('/locationpuestos_votacion_generales/{id}','locationController@puestovotacionesgeneral');
+    Route::get('/locationmesas/{id}','locationController@mesas');
+    
+    Route::get('/locationbarrio/{id}','locationController@barriosgeneral');
+    
+    Route::get('/locationmpersona/{id}','locationController@municipios_persona');
+    Route::get('/locationcomunapersona/{id}','locationController@comunas_persona');
+    // se evalua si el documento ingresado ya esta en la BD
+    Route::get('/evaluardocumento/{id}','regpersonaController@eval_documento');
+    });
+
+//MIDDELWARE DE LIDERES------------------------------------------------------------------------
+Route::group(['middleware'=>'checkuser'], function(){ 
+    
+    Route::get('/l_dashboard','liderController\reporteController@index')->name('dashboardlider');
+    Route::get('/l_votosporzonas','liderController\reporteController@votos_por_zonas');   
+    Route::get('/l_votosporpuestos','liderController\reporteController@votos_por_puestos');
+    Route::get('/l_votospormesa','liderController\reporteController@votos_por_mesa');
+
+    Route::get('/logout','Auth\LoginController@logout')->name('logout');
+    //resetear passwor de un usuario 
+    //Route::get('/l_form_password','liderController\regpersonaController@formchangepass');
+    Route::post('/l_cambiar_password','liderController\regpersonaController@changepassword');
+    //CAMBIAR MI CONTRASEÑA
+    Route::get('/l_profilechange_password','liderController\regpersonaController@formchangeprofilepass');
+    Route::post('/l_change_password','liderController\regpersonaController@changeprofilepassword');
+    // CONSULTAS EN CONTROLADOR GENERAL
+    Route::get('/l_usuarioslider/{id}','liderController\generalController@lider_usu_register');
+    Route::get('/l_usuariosdeliderfaltantesporvotar/{id}','liderController\generalController@lider_usu_sin_votar');
+    Route::get('/l_totalvotosfaltantes','liderController\generalController@usuarios_sin_votar');
+
+//rutas para alideres
+Route::get('/l_registrarlider','liderController\regliderController@index');
+Route::post('/l_actualizarlider','liderController\regliderController@actualizar');
+// REGISTRAR PUESTO
+Route::get('/registrarpuestovotacion','liderController\puestoVotacionController@index');
+Route::post('/registrarpuestovotacion','liderController\puestoVotacionController@registrar');
+// REGISTRAR PUESTO
+Route::get('/registrarmesa','liderController\mesaVotacionController@index');
+Route::post('/registrarmesa','liderController\mesaVotacionController@registrar');
+
+Route::resource('/l_usuario','liderController\regpersonaController');
+
+
+
+//REPORTES
+Route::get('reportes/','liderController\reporteController@index');
+});
+
+
+//MIDDELWARE DE ADMINISTRADOR--------------------------------------------------------------------------------------------
+
+Route::group(['middleware'=>'adminlogin'], function(){ 
     
     Route::get('/dashboard','reporteController@index')->name('dashboard');
     Route::get('/votosporzonas','reporteController@votos_por_zonas');
@@ -61,23 +110,8 @@ Route::resource('/usuario','regpersonaController');
 //Route::resource('/editarusuario','regpersonaController');
 //Route::resource('/actualizarusuarioedit','regpersonaController');
 
-Route::get('/locationm/{id}','locationController@municipios');
-Route::get('/locationd/{id}','locationController@departamentos');
-Route::get('/locationz/{id}','locationController@zonas');
-Route::get('/locationpv/{id}','locationController@puestovotaciones');
-Route::get('/locationpuestos_votacion_generales/{id}','locationController@puestovotacionesgeneral');
-Route::get('/locationmesas/{id}','locationController@mesas');
-
-Route::get('/locationbarrio/{id}','locationController@barriosgeneral');
-
-Route::get('/locationmpersona/{id}','locationController@municipios_persona');
-Route::get('/locationcomunapersona/{id}','locationController@comunas_persona');
-
-// se evalua si el documento ingresado ya esta en la BD
-Route::get('/evaluardocumento/{id}','regpersonaController@eval_documento');
 
 //REPORTES
 Route::get('reportes/','reporteController@index');
 });
-
 

@@ -1,4 +1,4 @@
-@extends('../../layout.layout')
+@extends('../../layout.layoutlider')
 @section('titulo','REGISTRAR MESA')
 @section('content')
 

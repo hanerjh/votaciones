@@ -1,5 +1,5 @@
 @extends('../../layout.layout')
-@section('titulo','Dashboard')
+@section('titulo','Dashboard administrador')
 @section('content')
 
         <!-- Begin Page Content -->

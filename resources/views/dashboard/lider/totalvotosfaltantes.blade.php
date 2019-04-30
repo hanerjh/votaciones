@@ -1,4 +1,4 @@
-@extends('../../layout.layout')
+@extends('../../layout.layoutlider')
 @section('titulo','TOTAL PERSONAS QUE HACEN FALTA POR VOTAR')
 @section('content')
 <div class="col-md-9">
