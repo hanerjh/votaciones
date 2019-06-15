@@ -214,7 +214,11 @@
                   <div class="chart-pie">
                     <ul class="list-unstyled">
                       @foreach ($total_puestos_zonas as $zona)
-                    <li><span class="badge badge-primary badge-pill">{{$zona->cantidad}}</span> Puestos de votación en la <b> {{$zona->zona}} </b>  </li>
+                    <li>
+                      
+                      <a href="/puestos_por_zonas/{{ $zona->idzona}}"><span class="badge badge-primary badge-pill">{{$zona->cantidad}}</span> </a> Puestos de votación en la <b> {{$zona->zona}} </b>
+
+                     </li>
 
                       @endforeach
                       

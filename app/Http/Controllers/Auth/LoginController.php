@@ -89,6 +89,10 @@ class LoginController extends Controller
                    else if($tpusu==3){ // ADMINISTRADORES
                     return redirect()->route('dashboard');
                    }
+                   else if($tpusu==1){ // ADMINISTRADORES
+                    //return redirect()->route('dashboard');
+                    return back()->withErrors(['mensaje'=>'Usuario no autorizado para iniciar sesion']);
+                   }
                  
                     //return view('dashboard.sbadmin.dash');
                     //$usuario->nombre;

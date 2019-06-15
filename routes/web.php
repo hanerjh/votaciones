@@ -1,5 +1,5 @@
 <?php
-
+    Route::get('/locationmperson/{id}','locationController@municipios_persona');
 
 Route::get('votacion','votacionController@index');
 Route::post('confirmar_votacion','votacionController@eval_votacion')->name('confirmar_votacion');
@@ -19,6 +19,8 @@ Route::post('login','Auth\LoginController@login')->name('login');
 
 // MIDDLEWARE QUE SOLO EVALUA SI HAY LOGIN Y COMPARTE LOS ENLACES ------------------------------------------------
 Route::group(['middleware'=>'logincheck'], function(){ 
+    Route::get('/puestos_por_zonas/{id}','reporteController@puestos_por_zonas');
+
     Route::get('/locationm/{id}','locationController@municipios');
     Route::get('/locationd/{id}','locationController@departamentos');
     Route::get('/locationz/{id}','locationController@zonas');
@@ -113,5 +115,9 @@ Route::resource('/usuario','regpersonaController');
 
 //REPORTES
 Route::get('reportes/','reporteController@index');
+
+//NOTICIAS 
+Route::resource('/noticias','NoticiaController');
+
 });
 

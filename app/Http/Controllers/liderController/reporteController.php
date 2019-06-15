@@ -59,8 +59,8 @@ class reporteController extends Controller
         //CANTIDAD DE PUESTOS DE VOTACION POR ZONAS
         $total_puestos_zonas=DB::table("puesto_votacion as puesto")
         ->leftJoin('zona', 'puesto.fk_zona', '=', 'zona.idzona')  
-        ->select('zona.zona',DB::raw('COUNT(puesto.idpuesto_votacion) as cantidad'))
-        ->groupBy('zona')
+        ->select('zona.zona','zona.idzona',DB::raw('COUNT(puesto.idpuesto_votacion) as cantidad'))
+        ->groupBy('zona','idzona')
         ->get();
 
         // TOTAL DE VOTOS EN EL SISTEMA PARA LA ULTIMA CAMPAÑA

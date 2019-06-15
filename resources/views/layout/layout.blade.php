@@ -23,6 +23,8 @@
  
   <!--<link href=" https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">-->
   <link href=" https://cdn.datatables.net/buttons/1.5.4/css/buttons.dataTables.min.css" rel="stylesheet">
+
+  @yield('css');
   
   <style>
      .nav_list{
@@ -126,7 +128,26 @@
         </div>
       </li>
 
-      
+       <!-- Heading -->
+       <div class="sidebar-heading">
+       Sitio web 
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#noticias" aria-expanded="true" aria-controls="noticias">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Noticias</span>
+        </a>
+        <div id="noticias" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">          
+            <a class="collapse-item" href="/noticias">Publicar Noticia</a>
+            <a class="collapse-item" href="/vernoticia">Ver Noticias</a>
+         
+                
+          </div>
+        </div>
+      </li>
 
       
 

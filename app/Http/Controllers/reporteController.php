@@ -59,8 +59,8 @@ class reporteController extends Controller
         //CANTIDAD DE PUESTOS DE VOTACION POR ZONAS
         $total_puestos_zonas=DB::table("puesto_votacion as puesto")
         ->leftJoin('zona', 'puesto.fk_zona', '=', 'zona.idzona')  
-        ->select('zona.zona',DB::raw('COUNT(puesto.idpuesto_votacion) as cantidad'))
-        ->groupBy('zona')
+        ->select('zona.zona','zona.idzona',DB::raw('COUNT(puesto.idpuesto_votacion) as cantidad'))
+        ->groupBy('zona','idzona')
         ->get();
 
         // TOTAL DE VOTOS EN EL SISTEMA PARA LA ULTIMA CAMPAÑA
@@ -228,6 +228,24 @@ class reporteController extends Controller
          ->get();
         
          return view('dashboard.sbadmin.registroviaweb',compact('registroweb'));
+    }
+
+//MOSTRAMOS LOS PUESTOS POR LA ZONA ELEGIDA
+    public function puestos_por_zonas($idzona){
+
+         //CANTIDAD DE PUESTOS DE VOTACION POR ZONAS
+         $total_puestos_zonas=DB::table("puesto_votacion as puesto")
+         ->leftJoin('zona', 'puesto.fk_zona', '=', 'zona.idzona') 
+         ->where('zona.idzona',$idzona) 
+         ->select('zona.zona','puesto.nombre_puesto')         
+         ->get();
+         if(session()->get('tipousu')===3){
+         return view('dashboard.sbadmin.puestos_por_zonas',compact('total_puestos_zonas'));
+         }
+         else if(session()->get('tipousu')===2){
+            return view('dashboard.lider.puestos_por_zonas',compact('total_puestos_zonas'));
+         }
+         
     }
 
 }
