@@ -14,8 +14,9 @@ class NoticiaController extends Controller
      */
     public function index()
     {
-        // 
-        return view('dashboard/sbadmin/regnoticia');
+        //
+        
+       return view('dashboard/sbadmin/regnoticia');
     }
 
     /**
@@ -49,9 +50,9 @@ class NoticiaController extends Controller
             $destinationPath = public_path('/images');
             $file->move($destinationPath, $name);
         }
-
+        $id_session_user=$request->session()->get('iduser');
         DB::table('noticia')->insert(
-            ['titulo' => $request->titulo, 'contenido' => $request->contenido, 'imagen' => $name ]
+            ['titulo' => $request->titulo, 'contenido' => $request->contenido, 'imagen' => $name, 'fkidpersona'=>$id_session_user ]
         );
         //'idpersonalider'=>$id_session_user
         return "INFORMACION ALMACENADA";

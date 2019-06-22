@@ -43,6 +43,7 @@ class votacionController extends Controller
             
             if(($vigencia_eleccion->ano == $mytime->year ) && ($vigencia_eleccion->estado==0 ))
             {
+                //CERO ES ESTADO ACTIVO, UNO INACTIVO
                     //CONSULTAMOS SI UN USUARIO YA VOTO EN LA CAMPAÑA ACTUAL YA QUE TRAEMOS EL IDCAMPAÑA VIGENTE EN LA CONSULTA ANTERIRO
                         $confimacion_voto=DB::table('persona_has_campanna')                         
                         ->select('campanna_idcampanna')

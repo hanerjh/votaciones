@@ -1,6 +1,11 @@
 <?php
-    Route::get('/locationmperson/{id}','locationController@municipios_persona');
+//PAGINA PRICIPAL DE LA APRICACION - FRONTEND
 
+Route::get('/','generalController@noticias_web_principal');
+Route::get('/noticia/{id}','generalController@desc_noticias');
+
+
+Route::get('/locationmperson/{id}','locationController@municipios_persona');
 Route::get('votacion','votacionController@index');
 Route::post('confirmar_votacion','votacionController@eval_votacion')->name('confirmar_votacion');
 Route::post('/cambiar_passwordinical','regpersonaController@changepassword');
@@ -8,7 +13,6 @@ Route::post('/registro','regpersonaController@registro_user_from_website')->name
 Route::get('/recuperarcontrasena',function(){
     return view('resetpass');
 });
-
 Route::get('/registro',function(){
     return view('registro');
 });
@@ -78,7 +82,8 @@ Route::get('reportes/','liderController\reporteController@index');
 //MIDDELWARE DE ADMINISTRADOR--------------------------------------------------------------------------------------------
 
 Route::group(['middleware'=>'adminlogin'], function(){ 
-    
+  
+
     Route::get('/dashboard','reporteController@index')->name('dashboard');
     Route::get('/votosporzonas','reporteController@votos_por_zonas');
     Route::get('/listadelideres','reporteController@total_lideres');
@@ -98,6 +103,11 @@ Route::group(['middleware'=>'adminlogin'], function(){
     Route::get('/usuariosdeliderfaltantesporvotar/{id}','generalController@lider_usu_sin_votar');
     Route::get('/totalvotosfaltantes','generalController@usuarios_sin_votar');
 
+
+   //SECCION DE CAMPAÑAS
+   Route::get('/campaña','campannaController@form_regcampaña');
+   Route::post('/campaña','campannaController@insert_regcampaña');
+
 //rutas para alideres
 Route::get('/registrarlider','regliderController@index');
 Route::post('/actualizarlider','regliderController@actualizar');
@@ -111,7 +121,6 @@ Route::post('/registrarmesa','mesaVotacionController@registrar');
 Route::resource('/usuario','regpersonaController');
 //Route::resource('/editarusuario','regpersonaController');
 //Route::resource('/actualizarusuarioedit','regpersonaController');
-
 
 //REPORTES
 Route::get('reportes/','reporteController@index');

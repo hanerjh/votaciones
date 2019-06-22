@@ -66,7 +66,8 @@ class reporteController extends Controller
         // TOTAL DE VOTOS EN EL SISTEMA PARA LA ULTIMA CAMPAÑA
 
         $vigencia_eleccion=DB::table('campanna')  
-        ->select('ano','fecha_cierre','estado','idcampanna')
+        ->select('ano','fecha_cierre','estado','idcampanna','titulo')
+        ->where('estado',0)
         ->orderBy('idcampanna','desc')
         ->limit(1)       
         ->first();
@@ -80,7 +81,10 @@ class reporteController extends Controller
         $total_votos_usu_lider=DB::table("persona as lider")
         ->rightJoin('persona as usuario', 'lider.idpersona', '=', 'usuario.idpersonalider')
         ->join('persona_has_campanna as votacion','usuario.idpersona','=','votacion.persona_idpersona')
-        ->where('lider.idpersona',$id_session_user)                         
+        ->where([
+                ['lider.idpersona',$id_session_user],
+                ['campanna_idcampanna',$vigencia_eleccion->idcampanna],
+            ])                         
         ->count();
 
         $faltantes_votos= $cant_usu_reg_lider - $total_votos_usu_lider;
@@ -96,6 +100,7 @@ class reporteController extends Controller
                             ->where('campanna_idcampanna','=',function($query){
                                       $query->select('idcampanna')
                                       ->from('campanna')
+                                      ->where('estado',0)
                                       ->orderBy('idcampanna','desc')
                                         ->limit(1)       
                                         ->get();
@@ -109,7 +114,8 @@ class reporteController extends Controller
         ->Join('zona','idzona','=','puesto_votacion.fk_zona') 
        ->where('campanna_idcampanna','=',function($query){
         $query->select('idcampanna')
-        ->from('campanna')
+        ->from('campanna') 
+        ->where('estado',0)       
         ->orderBy('idcampanna','desc')
           ->limit(1)       
           ->get();
@@ -124,12 +130,12 @@ class reporteController extends Controller
         //return view('dashboard.sbadmin.dash');
         if(session()->get('tipousu')===2){
 
-            return view('dashboard.adminlider.dash',compact('voto_por_zonas','regiones','departamentos','municipios','cant_usu_registrado','cant_lider_registrado','cant_usu_reg_lider','total_usu_reg_por_lideres','total_puestos_zonas','total_votos','total_votos_usu_lider','faltantes_votos', 'total_votos_faltantes'));
+            return view('dashboard.adminlider.dash',compact('vigencia_eleccion','voto_por_zonas','regiones','departamentos','municipios','cant_usu_registrado','cant_lider_registrado','cant_usu_reg_lider','total_usu_reg_por_lideres','total_puestos_zonas','total_votos','total_votos_usu_lider','faltantes_votos', 'total_votos_faltantes'));
 
         }
         if(session()->get('tipousu')===3){
 
-            return view('dashboard.sbadmin.dash',compact('voto_por_zonas','regiones','departamentos','municipios','cant_usu_registrado','cant_lider_registrado','cant_usu_reg_lider','total_usu_reg_por_lideres','total_puestos_zonas','total_votos','total_votos_usu_lider','faltantes_votos', 'total_votos_faltantes'));
+            return view('dashboard.sbadmin.dash',compact('vigencia_eleccion','voto_por_zonas','regiones','departamentos','municipios','cant_usu_registrado','cant_lider_registrado','cant_usu_reg_lider','total_usu_reg_por_lideres','total_puestos_zonas','total_votos','total_votos_usu_lider','faltantes_votos', 'total_votos_faltantes'));
 
         }
 

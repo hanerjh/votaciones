@@ -8,7 +8,11 @@
       
           <!-- Content Row -->
           <div class="row">
-
+            <div class="col-12">
+            <p>Campaña Electora : {{$vigencia_eleccion->titulo}} - Año: {{ $vigencia_eleccion->ano }}</p>
+            <p>Fecha de cierre de Campaña / Elecciones: {{$vigencia_eleccion->fecha_cierre}}</p>
+            </div>
+            
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
