@@ -92,8 +92,8 @@ class reporteController extends Controller
         //TOTAL DE USUARIOS POR VOTAR  
         $total_votos_faltantes=DB::table("persona as lider")
         ->rightJoin('persona as usuario', 'lider.idpersona', '=', 'usuario.idpersonalider')
-        ->join('puesto_votacion as puesto','puesto.idpuesto_votacion','=','usuario.fkpuesto_votacion')
-        ->join('mesa','idmesa','=','usuario.fk_mesa') 
+        ->leftjoin('puesto_votacion as puesto','puesto.idpuesto_votacion','=','usuario.fkpuesto_votacion')
+        ->leftjoin('mesa','idmesa','=','usuario.fk_mesa') 
         ->whereNotIn('usuario.idpersona',function($query){
                             $query->select('persona_idpersona')
                             ->from('persona_has_campanna as votacion')

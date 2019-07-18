@@ -340,7 +340,7 @@ h5.subtitle {
     left: 0px;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.0);
 }
 
 .brown-overlay {
@@ -354,8 +354,8 @@ h5.subtitle {
 }
 
 .gr-overlay {
-    background: linear-gradient(135deg, #2f1ce0 0%, #53a0fd 30%, #51eca5 100%);
-    opacity: .87;
+    background: linear-gradient(135deg, #C8B903 0%, #B39303 30%, #2C9B68 100%);
+    opacity: .4;
 }
 
 
@@ -627,7 +627,7 @@ h5.subtitle {
 
 
 .banner-1 {
-    background: url("../img/banner/bg-2.jpg");
+    background: url("../img/banner/banner5.jpg");
     -webkit-background-size: cover;
     background-size: cover;
     position: relative;
@@ -970,7 +970,7 @@ h5.subtitle {
     width: 100px;
     height: 100px;
     text-align: center;
-    padding-top: 35px;
+    padding-top: 25px;
     font-size: 50px;
     display: inline-block;
     border-radius: 100%;
@@ -1259,7 +1259,7 @@ INner Pages
     padding: 60px 0px 80px;
 }
 .page-banner-area{
-    background:url("../img/banner/1.jpg")no-repeat 50% 50%;
+    background:url("../img/banner/banner.jpg")no-repeat 50% 50%;
     background-size: cover;
 }
 
@@ -1467,7 +1467,7 @@ BLOG PAGE
 
 .category ul li:before{
     position: absolute;
-    content:"\f105";
+    
     left: 0px;
     top: 0px;
     font-family: "FontAwesome";

@@ -25,7 +25,7 @@
                         <tr>
                             <th scope="row">{{$loop->index+1}}</th>
                             <td><div class="pl-2 bg-dark text-white"><i class="fas fa-user-tie"></i> <strong>{{$usuario->lider}} {{$usuario->apellidolider}}</strong></div> </td>
-                            <td>{{$usuario->nombre}} {{$usuario->apellido}}</td>
+                            <td><a class="" href="/usuario/{{$usuario->idpersona }}/edit">{{$usuario->nombre}} {{$usuario->apellido}}</a></td>                    
                             <td>{{$usuario->telefono}}</td>
                             <td>{{$usuario->nombre_puesto}}</td>
                             <td>{{$usuario->mesa}}</td>

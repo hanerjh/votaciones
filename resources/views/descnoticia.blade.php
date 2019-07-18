@@ -23,7 +23,7 @@
     <!--  RESPONSIVE STYLE  -->
     <link rel="stylesheet" href="{!! url('frontend/assets/css/responsive.css') !!}" type="text/css">
 
-    <title>Promodise - seo and digital marketing solution </title>
+    <title>Amigos de Hardany Cedeño </title>
 
 </head>
 
@@ -51,8 +51,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 m-auto text-center col-sm-12 col-md-12">
                     <div class="banner-content content-padding">
-                        <h1 class="banner-title">Blog Details</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde, perferendis?</p>
+                        <h1 class="banner-title">&nbsp</h1>
+                        <p>&nbsp</p>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@
                         <div class="col-lg-12">
                             <div class="sidebar-widget about-bar">
                                 <h5 class="mb-3">Amigos de Hardany Cedeño</h5>
-                                <p>Nostrum ullam porro iusto. Fugit eveniet sapiente nobis nesciunt velit cum fuga doloremque dignissimos asperiores</p>
+                                <p>Apóyanos este 27 de octubre de 2019 marcando el el tarjetón U14 y caminemos juntos a Eddy Hardany Cedeño,aspirante al concejo distrital de Buenaventura.</p>
                             </div>
                         </div>
 
@@ -127,12 +127,11 @@
                             <div class="sidebar-widget category">
                                 <h5 class="mb-3">Menu</h5>
                                 <ul class="list-styled">
-                                       <li><a href="/">Inicio</a></li>
-                                       <li><a href="/#about">Hardany Cedeño</a></li>
-                                       <li><a href="/#intro">Politicas</a></li>
-                                       <li><a href="/#service">Pilares</a></li>
-                                       <li><a href="#">Aliados</a></li>
-                                       <li><a href="/#footer">Contactenos</a></li>
+                                       <li> <a href="/"><i class="fas fa-angle-right"></i> Inicio</a></li>
+                                       <li><a href="/#about"><i class="fas fa-angle-right"></i> Hardany Cedeño</a></li>
+                                       <li><a href="/#intro"><i class="fas fa-angle-right"></i> Politicas</a></li>
+                                       <li><a href="/#service"><i class="fas fa-angle-right"></i> Pilares</a></li>                                       
+                                       <li><a href="/#footer"><i class="fas fa-angle-right"></i> Contactenos</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -165,7 +164,7 @@
                     <div class="col-lg-5 col-sm-8 col-md-8">
                         <div class="footer-widget footer-link">
                             <h4>AMIGOS DE HARDANY CEDEÑO.</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsam hic non sunt recusandae atque unde saepe nihil earum voluptatibus aliquid optio suscipit nobis quia excepturi vel quod, iure quae.</p>
+                            <p>Apóyanos este 27 de octubre de 2019 marcando el el tarjetón U14 y caminemos juntos a Eddy Hardany Cedeño,aspirante al concejo distrital de Buenaventura.</p>
                         </div>
                     </div>
                    
@@ -174,9 +173,9 @@
                     <div class="col-lg-3 col-sm-6 col-md-6">
                         <div class="footer-widget footer-text">
                             <h4>Ubicación</h4>
-                            <p class="mail"><span>Email:</span> amigosdehardany@gmail.com</p>
-                            <p><span>Telefono :</span>+202-277-3894</p>
-                            <p><span>Dirección:</span> 455 West Orchard Street Kings Mountain, NC 28086,NOC building</p>
+                            <p class="mail"><span>Email:</span> info@hardany.com</p>
+                            <p><span>Telefono :</span></p>
+                            <p><span>Dirección:</span></p>
                         </div>
                     </div>
                 </div>

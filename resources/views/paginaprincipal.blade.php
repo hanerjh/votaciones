@@ -22,6 +22,9 @@
     <!--  RESPONSIVE STYLE  -->
     <link rel="stylesheet" href="frontend/assets/css/responsive.css" type="text/css">
 
+      <!--  NOTIFICACION  -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css">
+   
     <title>Amigos de hardany cedeño </title>
 
 </head>
@@ -76,10 +79,10 @@
 					
                         <div class="col-lg-6  text-center col-sm-12 col-md-12">
                             <div class="banner-content content-padding">
-                                <h5 class="subtitle">Querer es poder</h5>
+                                <h5 class="subtitle">Caminemos Juntos</h5>
                                 <h1 class="banner-title">Amigos de Hardany Cedeño</h1>
-                              
-                                <p>Querer es poder. Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.</p>
+                                <h1 class="banner-title">Marca U14</h1>                                   
+                                <p>Apóyanos este 27 de octubre de 2019 marcando el el tarjetón U14 y caminemos juntos a Eddy Hardany Cedeño,aspirante al concejo distrital de Buenaventura</p>
 
                            
                             </div>
@@ -137,13 +140,9 @@
                                                       <input type="submit" class="btn btn-primary btn-block" value="Registrarse">
 													  <br>
                                                             <div class="text-center">
-                                                                @if(session()->has('msg'))
-                                                                <div class="alert alert-primary" role="alert">
-                                                                {{ session('msg') }}
-                                                                </div>
-                                                                @endif
                                                                 {!! $errors->first('msj','<small class="text-danger">:message</small>')!!}
-                                                                </div>
+                                                            </div>
+                                                           
 												</form>
                             </div>
                         </div>
@@ -195,7 +194,7 @@
                         <div class="col-lg-4 col-sm-6">
                                 <div class="pricing-block ">
                                     <div class="price-header">
-                                            <i class="icofont-network"></i>
+                                        <i class="fas fa-hands-helping"></i>
                                         <h3>SERVICIO</h3>
                                     </div>
                                     <p >Vivimos para servir, no sólo en campañas políticas sino en todos los tiempos y mientras esté bajo mi alcance sirvo a las personas con mucha satisfacción..</p>
@@ -206,7 +205,7 @@
                             <div class="col-lg-4 col-sm-6">
                                     <div class="pricing-block ">
                                         <div class="price-header">
-                                            <i class="flaticon-iphone"></i>
+                                            <i class="fas fa-bible"></i>
                                             <h3>VERDAD</h3>
                                         </div>
                                         <p>No me comprometo en lo que no pueda cumplir, no gano votos con mentiras y es de vital importancia recuperar la credibilidad para hacer un cambio de paradigma político. </p>
@@ -217,7 +216,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                         <div class="pricing-block ">
                                             <div class="price-header">
-                                                <i class="flaticon-people"></i>
+                                                <i class="fas fa-users"></i>
                                                 <h3>AMISTAD</h3>
                                             </div>
                                             <p>Más que un político quiero ser tu amigo, aprecio y valoro el significado de la amistad.</p>
@@ -259,9 +258,7 @@
                     </div>
                 <div class="col-lg-3 col-sm-6 col-md-6">
                     <div class="service-box">
-                        <div class="service-img-icon">
-                            <img src="frontend/assets/img/icon/007-digital-marketing-3.png" alt="service-icon" class="img-fluid">
-                        </div>
+                            <i class="fas fa-server fa-4x"></i>
                         <div class="service-inner">
                             <h4>DESARROLLO TECNOLÓGICO</h4>
                             <p>Como Ingeniero de Sistemas y con experiencia en el área tecnológica, me inclinaré en que podamos crear la Secretaría de las Tecnologías de Información y las Comunicaciones en Nuestro Distrito de Buenaventura..</p>
@@ -270,9 +267,8 @@
                 </div>
                 <div class="col-lg-3 col-sm-6 col-md-6">
                     <div class="service-box ">
-                        <div class="service-img-icon">
-                            <img src="frontend/assets/img/icon/008-digital-marketing-2.png" alt="service-icon" class="img-fluid">
-                        </div>
+                            <i class="fas fa-swimmer fa-4x"></i>
+                       
                         <div class="service-inner">
                             <h4>RECREACIÓN Y DEPORTE</h4>
                             <p>Conozco la importancia del deporte y la recreación para el progreso colectivo desde las familias hasta la comunidad en general; por lo tanto me enfocaré en la infraestructura deportiva, la recreación de infancia-adolescencia y adultos mayores.</p>
@@ -281,9 +277,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6 col-md-6">
                     <div class="service-box">
-                        <div class="service-img-icon">
-                            <img src="frontend/assets/img/icon/003-task.png" alt="service-icon" class="img-fluid">
-                        </div>
+                            <i class="fas fa-city fa-4x"></i>
                         <div class="service-inner">
                             <h4>CULTURA CIUDADANA</h4>
                             <p>Debemos luchar por la cultura ciudadana a través de la  autoestima y el sentido de pertenencia por Buenaventura; ejecutando programas sociales que ayuden a contribuir el bienestar de nuestra ciudad.</p>
@@ -293,9 +287,9 @@
 
                 <div class="col-lg-3 col-sm-6 col-md-6">
                     <div class="service-box">
-                        <div class="service-img-icon">
-                            <img src="frontend/assets/img/icon/010-digital-marketing.png" alt="service-icon" class="img-fluid">
-                        </div>
+                      
+                                    <i class="fas fa-brain fa-4x"></i>
+                            
                         <div class="service-inner">
                             <h4>EMPRENDIMIENTO</h4>
                             <p>Apoyaremos la reactivación económica en el Distrito de Buenaventura para la generación de empleo y oportunidades de empresas en nuestra ciudad..</p>
@@ -311,7 +305,7 @@
 
 
 
-    <!--  TESTIMONIAL AREA START  -->
+    <!--  TESTIMONIAL AREA START  
     <section id="testimonial" class="section-padding ">
         <div class="container">
             <div class="row">
@@ -362,7 +356,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--  ITEM END  -->
+                             ITEM END  
 
                             <div class="carousel-item ">
                                 <div class="row">
@@ -383,16 +377,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--  ITEM END  -->
+                          ITEM END  
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--  TESTIMONIAL AREA END  -->
+    TESTIMONIAL AREA END  -->
     
-    <!--  PARTNER START  -->
+    <!--  PARTNER START  
     <section id="clients" class="section-padding ">
         <div class="container">
             <div class="row">
@@ -419,7 +413,7 @@
             </div>
         </div>
     </section>
-    <!--  PARTNER END  -->
+     PARTNER END  -->
 
     <!--  BLOG AREA START  -->
     <section id="blog" class="section-padding bg-main">
@@ -518,8 +512,8 @@
 
                 <div class="col-lg-5 col-sm-8 col-md-8">
                     <div class="footer-widget footer-link">
-                        <h4>AMIGOS DE HARDANY CEDEÑO.</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore ipsam hic non sunt recusandae atque unde saepe nihil earum voluptatibus aliquid optio suscipit nobis quia excepturi vel quod, iure quae.</p>
+                        <h4>AMIGOS DE HARDANY CEDEÑO</h4>
+                        <p>Apóyanos este 27 de octubre de 2019 marcando el el tarjetón U14 y caminemos juntos a Eddy Hardany Cedeño,aspirante al concejo distrital de Buenaventura. </p>
                     </div>
                 </div>
                
@@ -528,9 +522,9 @@
                 <div class="col-lg-3 col-sm-6 col-md-6">
                     <div class="footer-widget footer-text">
                         <h4>Ubicación</h4>
-                        <p class="mail"><span>Email:</span> amigosdehardany@gmail.com</p>
-                        <p><span>Telefono :</span>+202-277-3894</p>
-                        <p><span>Dirección:</span> 455 West Orchard Street Kings Mountain, NC 28086,NOC building</p>
+                        <p class="mail"><span>Email:</span> info@hardany.com</p>
+                        <p><span>Telefono :</span></p>
+                        <p><span>Dirección:</span> </p>
                     </div>
                 </div>
             </div>
@@ -561,6 +555,19 @@
     <!--  wow animation  -->
     <script src="frontend/assets/js/wow.min.js"></script>
     <script src="frontend/assets/js/custom.js"></script>
+
+     <!--  Notificacion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+   
+    <script>
+
+         @if(session()->has('msg'))  
+         toastr.success("{{ session('msg') }}") 
+         @endif
+
+      
+    </script>
+    
 
 </body>
 

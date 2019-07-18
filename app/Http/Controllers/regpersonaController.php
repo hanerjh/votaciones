@@ -307,7 +307,7 @@ class regpersonaController extends Controller
 
            if($dato>0){
 
-                return back()->withErrors(['msj'=>'Existe un registro vinculado al numero de documento ingresado']);
+                return back()->withErrors(['msj'=>'Ya existe un registro vinculado al número de documento ingresado']);
             }
             else{
                     try{
@@ -322,13 +322,14 @@ class regpersonaController extends Controller
                         $msn=$request->email." / ".$pass;
                         Mail::to($request->email)->send(new MensajeEnviado($msn));
 
-                        return back()->with(['msg'=>'Gracias por registrarte. Se ha enviado a tu correo <b>'. $request->email.'</b> la clave de acceso al sistemas']);
+                        //return back()->with(['msg'=>'Gracias por registrarte. Se ha enviado a tu correo '. $request->email.' la clave de acceso al sistemas']);
+                        return back()->with(['msg'=>'Muchas gracias por registrarte']);
                     } 
                     catch(QueryException $ex){ 
                         //VERIFICAMOS QUE EL CORREO INGRESADO NO ESTE EN EL SISTEMA
                         if($ex->errorInfo[1]==1062){
 
-                            return back()->withErrors(['msj'=>'El correo '. $request->email.'ya se encuentra registrado. Por favor ingrese un correo nuevo o contactenos al 2425254, o escribanos al correo <b>soporte@amigosdehardany.com</b> si tiene alguna inquietud']);
+                            return back()->withErrors(['msj'=>'El correo '. $request->email.'ya se encuentra registrado. Por favor ingrese un correo nuevo, o escribanos al correo <b>soporte@amigosdehardany.com</b> si tiene alguna inquietud']);
 
                         } 
                         // Note any method of class PDOException can be called on $ex.

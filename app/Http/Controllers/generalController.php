@@ -88,8 +88,8 @@ class generalController extends Controller
     public function usuarios_sin_votar(){
         $usu_reg_by_lider=DB::table("persona as lider")
         ->rightJoin('persona as usuario', 'lider.idpersona', '=', 'usuario.idpersonalider')
-        ->join('puesto_votacion as puesto','puesto.idpuesto_votacion','=','usuario.fkpuesto_votacion')
-        ->join('mesa','idmesa','=','usuario.fk_mesa') 
+        ->leftJoin('puesto_votacion as puesto','puesto.idpuesto_votacion','=','usuario.fkpuesto_votacion')
+        ->leftJoin('mesa','idmesa','=','usuario.fk_mesa') 
         ->whereNotIn('usuario.idpersona',function($query){
                             $query->select('persona_idpersona')
                             ->from('persona_has_campanna as votacion')
@@ -103,7 +103,7 @@ class generalController extends Controller
 
                       });
             })                                     
-        ->select('lider.nombre as lider','lider.apellido as apellidolider','usuario.nombre','usuario.apellido','usuario.telefono','puesto.nombre_puesto','mesa.mesa')
+        ->select('lider.nombre as lider','lider.apellido as apellidolider','usuario.idpersona','usuario.nombre','usuario.apellido','usuario.telefono','puesto.nombre_puesto','mesa.mesa')
         ->get();
         return view('dashboard.sbadmin.totalvotosfaltantes',compact('usu_reg_by_lider'));
     }
