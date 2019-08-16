@@ -34,6 +34,7 @@ class votacionController extends Controller
             $vigencia_eleccion=DB::table('campanna')          
             ->orderBy('idcampanna','desc')
             ->select('ano','fecha_cierre','estado','idcampanna')
+            ->where('estado',0)
             ->limit(1)       
             ->first();
 

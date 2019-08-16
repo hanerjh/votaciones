@@ -190,6 +190,7 @@ class reporteController extends Controller
               ->where('campanna_idcampanna','=',function($query){
                 $query->select('idcampanna')
                 ->from('campanna')
+                ->where('estado',0) 
                 ->orderBy('idcampanna','desc')
                   ->limit(1)       
                   ->get();
@@ -254,4 +255,52 @@ class reporteController extends Controller
          
     }
 
+    //REPORTES DE USUARIOS REGISTRADOS PUESTO, MESA, ZONA
+
+    //1. CANTIDAD DE VOTOS QUE TENDRA POR PUESTOS SEGUN USUARIO REGISTRADO
+
+    public function cant_votos_previos_por_puestos(){
+     //OJO REESTRUCTURAR LA TABLA PERSONA_HAS_CAMPAÑA- hacer la tabla votacion y no dejar esta como votacion
+        $votos_prev=DB::table("persona")
+        ->leftJoin('puesto_votacion', 'idpuesto_votacion', '=', 'fkpuesto_votacion')       
+        ->select('nombre_puesto',DB::raw('COUNT(fkpuesto_votacion) as cantidad'))
+        ->groupBy('nombre_puesto')
+        ->orderBy('cantidad','desc')
+        ->get();
+
+       // return $votos_prev;
+       return view('dashboard.sbadmin.votos_prev_puestos',compact('votos_prev'));
+        
+    }
+
+    public function cant_votos_previos_por_mesa(){
+        //OJO REESTRUCTURAR LA TABLA PERSONA_HAS_CAMPAÑA- hacer la tabla votacion y no dejar esta como votacion
+           $votos_prev=DB::table("persona")
+           ->leftJoin('mesa', 'idmesa', '=', 'fk_mesa')
+           ->leftJoin('puesto_votacion', 'idpuesto_votacion', '=', 'puesto_mesa')
+           ->select('nombre_puesto','mesa',DB::raw('COUNT(fk_mesa) as cantidad'))
+           ->groupBy('nombre_puesto','mesa')
+           ->orderBy('nombre_puesto','cantidad','desc')
+           ->get();
+   
+           //return $votos_prev;
+           return view('dashboard.sbadmin.votos_prev_mesa',compact('votos_prev'));
+           
+       }
+
+       public function cant_votos_previos_por_zona(){
+        //OJO REESTRUCTURAR LA TABLA PERSONA_HAS_CAMPAÑA- hacer la tabla votacion y no dejar esta como votacion
+           $votos_prev=DB::table("persona")           
+           ->leftJoin('puesto_votacion', 'idpuesto_votacion', '=', 'fkpuesto_votacion')
+           ->leftJoin('zona', 'idzona', '=', 'fk_zona')
+           ->select('zona',DB::raw('COUNT(fkpuesto_votacion) as cantidad'))
+           ->groupBy('zona')
+           ->orderBy('cantidad','desc')
+           ->get();
+   
+           //return $votos_prev;
+           return view('dashboard.sbadmin.votosprev_zonas',compact('votos_prev'));
+   
+           
+       }
 }

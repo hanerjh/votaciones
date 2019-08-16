@@ -114,7 +114,11 @@
       <div class="bg-white py-2 collapse-inner rounded">           
         <a class="collapse-item" href="/listadelideres">Registro por lideres </a>
         <a class="collapse-item" href="/registroweb">Registro via web</a>
-        <a class="collapse-item" href="#">Puestos por zonas</a>
+        <hr>
+        <a class="collapse-item" href="/votosprev_zona">posibles votos por zonas</a>
+        <a class="collapse-item" href="/votosprev_puestos">posibles votos por puesto</a>
+        <a class="collapse-item" href="/votosprev_mesa">posibles votos por mesa</a>
+        <hr>
         <a class="collapse-item" href="/votosporpuestos">Votos por puestos</a>
         <a class="collapse-item" href="/votospormesa">Votos por mesa</a>
         <a class="collapse-item" href="/votosporzonas">Votos por zonas</a>       

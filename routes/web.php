@@ -91,6 +91,11 @@ Route::group(['middleware'=>'adminlogin'], function(){
     Route::get('/votosporpuestos','reporteController@votos_por_puestos');
     Route::get('/votospormesa','reporteController@votos_por_mesa');
 
+    //reportes pervios
+    Route::get('/votosprev_puestos','reporteController@cant_votos_previos_por_puestos');
+    Route::get('/votosprev_mesa','reporteController@cant_votos_previos_por_mesa');
+    Route::get('/votosprev_zona','reporteController@cant_votos_previos_por_zona');
+
     Route::get('/logout','Auth\LoginController@logout')->name('logout');
     //resetear passwor de un usuario 
     Route::get('/form_password','regpersonaController@formchangepass');
